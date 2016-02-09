@@ -1,1 +1,1 @@
-# smarter_office
+# IBM CIC Baltic Smarter Office
