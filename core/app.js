@@ -23,11 +23,17 @@ router.get('/', function (req, res) {
     });
 });
 
+// register api routes
+app.use('/api', router);
+
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
 // register api routes
 app.use('/api', router);
+
+var temperatureController = require('./rest/controllers/temperature');
+app.get('/api/temperatures', temperatureController.listAll);
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();

@@ -1,0 +1,3 @@
+exports.cloudant_url = "https://a526d510-b65a-437a-b350-264392592e8a-bluemix:235801bc29a05ee86af463546209491f17605d9f2803895985b6d9ebf7bc18eb@a526d510-b65a-437a-b350-264392592e8a-bluemix.cloudant.com";
+
+
