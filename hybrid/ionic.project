@@ -1,4 +1,10 @@
 {
-  "name": "myApp",
-  "app_id": ""
+  "name": "proxy-example",
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/temperatureAPIEndpoint",
+      "proxyUrl": "http://localhost:6001/api/temperatures"
+    }
+  ]
 }
