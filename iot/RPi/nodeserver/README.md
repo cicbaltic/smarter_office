@@ -14,12 +14,12 @@ Install instructions are in http://www.airspayce.com/mikem/bcm2835/
 
 * Upload node application into RPi:
 
-    +-- _nodeserver
-        +-- iot-config-example.json
-        +-- monitor.js
-        +-- package.json
-        +-- README.md
-    +-- iotApp.json
++-- _nodeserver
+    +-- iot-config-example.json
+    +-- monitor.js
+    +-- package.json
+    +-- README.md
++-- iotApp.json
 
 * Copy the iot-config-example.json into parent directory with file name iotApp.json
 * Fill iotApp.json with correct values from Bluemix IOT application
