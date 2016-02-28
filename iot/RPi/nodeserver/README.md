@@ -1,5 +1,8 @@
 # Node application for RPi
 
+This application collects data from temperature and humidity sensor and then pushes it into IOT cloud application.
+Script repeats this action by the set time period.
+
 ## Prerequisites:
 
 * Bluemix: ready IOT application
