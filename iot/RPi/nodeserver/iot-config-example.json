@@ -1,0 +1,6 @@
+{ //
+  "org" : "", // organization id from IOT applicatiom
+  "id" : "",  // this application instance id, ex: RaspberryPiApplication1
+  "auth-key" : "", // API key from IOT application
+  "auth-token" : ""// API key token from IOT application
+}
