@@ -15,10 +15,10 @@ Install instructions are in http://www.airspayce.com/mikem/bcm2835/
 * Upload node application into RPi:
 
 nodeserver
-  * iot-config-example.json
-  * monitor.js
-  * package.json
-  * README.md
+    iot-config-example.json
+    monitor.js
+    package.json
+    README.md
 iotApp.json
 
 * Copy the iot-config-example.json into parent directory with file name iotApp.json
