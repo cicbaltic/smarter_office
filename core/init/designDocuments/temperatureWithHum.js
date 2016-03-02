@@ -28,7 +28,14 @@ documents.lists['all_entries_with_step'] = function (head, req) {
 
 		if (row.value.time - zones[zoneId] > interval) { 
 			zones[zoneId] = row.value.time; 
-			rows.push(row); 
+			//rows.push(row); 
+			rows.push({
+				'time': row.value.time,
+				'zone_id': zoneId,
+				'temp_v': row.value.temp_v,
+				'hum_v': row.value.hum_v,
+				'id': row.value._id
+			});
 		} 
 	} 
 	send(JSON.stringify({'rows' : rows}));
