@@ -50,6 +50,7 @@ $> sudo node run initCloudant
 GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
 * Response 200 (text/json)
 * Sample object:
+```javascript
 [  
    {  
       "timestamp":1456673115263,
@@ -60,3 +61,4 @@ GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
       "id":"eca8dfb5c9f9d9754ee56818ebcb212d"
    }
 ]
+```
