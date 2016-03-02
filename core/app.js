@@ -38,13 +38,6 @@ app.get('/api/temperatures', temperatureController.listAll);
 var temperatureWithHumController = require('./rest/controllers/temperatureWithHum');
 app.get('/api/temperaturesWithHum', temperatureWithHumController.listAllWithStepInterval);
 
-// app.get('/api/temperaturesWithHum/interval', function(req, res) {
-// 	params = {};
-// 	params['startWith'] = new Date('2016-02-28T15:24:54.278Z').getTime();
-// 	params['endWith'] = new Date('2016-02-28T17:50:11.032Z').getTime();
-// 	temperatureWithHumController.listByDatesInterval(req, res, params);
-// });
-
 app.get('/api/temperaturesWithHum/:startsWith/:endsWith/:step?', function(req, res) {
 	var startsWith = req.params.startsWith;
 	var endsWith = req.params.endsWith;

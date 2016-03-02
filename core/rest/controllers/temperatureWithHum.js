@@ -23,7 +23,11 @@ exports.listAllWithStepInterval = function (req, res) {
 			body.rows.forEach(function (doc) {
 				temperatureWithHumList.push(doc);
 			});
-			res.send(JSON.stringify(temperatureWithHumList));
+			res.send(JSON.stringify({
+				'size': temperatureWithHumList.length,
+				'rows': temperatureWithHumList
+
+			}));
 		}
 	});
 }
@@ -42,7 +46,11 @@ exports.listByDatesInterval = function (req, res, params) {
 				body.rows.forEach(function (doc) {
 					temperatureWithHumList.push(doc);
 				});
-				res.send(JSON.stringify(temperatureWithHumList));
+				res.send(JSON.stringify({
+					'size': temperatureWithHumList.length,
+					'rows': temperatureWithHumList
+
+				}));
 			}
 		});
 	} else {
