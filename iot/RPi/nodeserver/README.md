@@ -51,6 +51,8 @@ GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
 * startWith and endsWith parameters accept dates (e.g. 2014-10-10, 2014-10-10T10:10)
 * step parameter accept int value which represent seconds
 * Response 200 (text/json)
+* Sample call
+  api/temperaturesWithHum/2014-10-10/2017-10-10T10:10/16
 * Sample respond object:
 ```javascript
 [  
