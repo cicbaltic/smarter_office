@@ -48,8 +48,10 @@ $> sudo node run initCloudant
 ## REST URIs
 
 GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
+* startWith and endsWith parameters accept dates (e.g. 2014-10-10, 2014-10-10T10:10)
+* step parameter accept int value which represent seconds
 * Response 200 (text/json)
-* Sample object:
+* Sample respond object:
 ```javascript
 [  
    {  
