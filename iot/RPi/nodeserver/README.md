@@ -47,5 +47,5 @@ $> sudo node run initCloudant
 
 ## REST URIs
 
-# GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
+GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
 * Response 200 (text/json)
