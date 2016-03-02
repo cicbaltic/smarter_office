@@ -30,7 +30,8 @@ documents.lists['all_entries_with_step'] = function (head, req) {
 			zones[zoneId] = row.value.time; 
 			//rows.push(row); 
 			rows.push({
-				'time': row.value.time,
+				'timestamp': row.value.time,
+				'date': row.value.date,
 				'zone_id': zoneId,
 				'temp_v': row.value.temp_v,
 				'hum_v': row.value.hum_v,
