@@ -3,7 +3,8 @@
 	"version": "0.0.1",
 	"description": "A sample nodejs app for Bluemix",
 	"scripts": {
-		"start": "node app.js"
+		"start": "node app.js",
+		"initCloudant" : "node init/cloudant.js"
 	},
 	"dependencies": {
 		"express": "4.12.x",
