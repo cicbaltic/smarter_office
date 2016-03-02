@@ -36,19 +36,13 @@ var temperatureController = require('./rest/controllers/temperature');
 app.get('/api/temperatures', temperatureController.listAll);
 
 var temperatureWithHumController = require('./rest/controllers/temperatureWithHum');
-app.get('/api/temperaturesWithHum', temperatureWithHumController.listAllWithStepInterval);
+app.get('/api/temperaturesAndHum/:step?', temperatureWithHumController.listAllWithStep);
 
-app.get('/api/temperaturesWithHum/:startsWith/:endsWith/:step?', function(req, res) {
-	var startsWith = req.params.startsWith;
-	var endsWith = req.params.endsWith;
-	var step = req.params.step;
+app.get('/api/temperaturesAndHumWithRange/:startsWith/:endsWith/:step?',temperatureWithHumController.listByRange);
 
-	params = {};
-	params['startWith'] = new Date(startsWith).getTime();
-	params['endWith'] = new Date(endsWith).getTime();
-	params['step'] = step;
-	temperatureWithHumController.listByDatesInterval(req, res, params);
-});
+app.get('/api/temperaturesAndHumWithZoneId/:zoneId', temperatureWithHumController.listByZoneId);
+
+app.get('/api/temperaturesAndHumWithRangeAndZoneId/:startsWith/:endsWith/:zoneId/:step?', temperatureWithHumController.listByZoneIdAndRange);
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();

@@ -3,16 +3,20 @@ var documents = module.exports = {
 	lists: {}
 }
 
-documents.views['all_entries'] = {};
-documents.views.all_entries['map'] = function(doc){ 
-	//emit([doc.time], [doc._id, doc.time, doc.zone_id, doc.temp_v, doc.hum_v]); 
+documents.views.doc_by_time = {};
+documents.views.doc_by_time['map'] = function(doc){ 
 	emit([doc.time], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
 }
 
-documents.lists['all_entries_with_step'] = function (head, req) {
+documents.lists.docWithRange = function (head, req) {
 	var interval = 10000; 
 	if (req.query.interval) {
 		interval = req.query.interval; 
+	}
+	
+	var zoneIds = false;
+	if(req.query.zoneId) {
+		zoneIds = req.query.zoneId.split(',');
 	}
 
 	var zones = {};
@@ -20,6 +24,18 @@ documents.lists['all_entries_with_step'] = function (head, req) {
 	var newDate = new Date();
 
 	while (row = getRow()) { 
+		if(zoneIds) {
+			var exist = false;
+			zoneIds.forEach(function(entry) {
+				if(entry === row.value.zone_id) {
+					exist = true;
+				}
+			});
+			if(!exist) {
+				continue;
+			}
+		}
+
 		row.value['date'] = new Date(row.value.time);
 		var zoneId = row.value.zone_id;
 		if(zones[zoneId] === undefined) {
@@ -42,3 +58,8 @@ documents.lists['all_entries_with_step'] = function (head, req) {
 	send(JSON.stringify({'rows' : rows}));
 }
 
+
+documents.views.doc_by_zoneId = {};
+documents.views.doc_by_zoneId['map'] = function(doc){  
+	emit([doc.zone_id], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
+}
