@@ -49,3 +49,14 @@ $> sudo node run initCloudant
 
 GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
 * Response 200 (text/json)
+* Sample object:
+[  
+   {  
+      "timestamp":1456673115263,
+      "date":"2016-02-28T15:25:15.263Z",
+      "zone_id":"123",
+      "temp_v":"26.00",
+      "hum_v":"47.00",
+      "id":"eca8dfb5c9f9d9754ee56818ebcb212d"
+   }
+]
