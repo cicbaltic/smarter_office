@@ -44,3 +44,28 @@ Publish: iot-2/type/RPi/id/RPi_test/evt/environment/fmt/json, {"environment":{"t
 
 * Run script to import / re-create cloudant design documents:
 $> sudo node run initCloudant
+
+## REST URIs
+
+GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
+* startWith and endsWith parameters accept dates (e.g. 2014-10-10, 2014-10-10T10:10)
+* step parameter accept int value which represent seconds
+* Response 200 (text/json)
+* Sample call
+  api/temperaturesWithHum/2014-10-10/2017-10-10T10:10/16
+* Sample respond object:
+```javascript
+{  
+   "size":415,
+   "rows":[  
+      {  
+         "timestamp":1456673115263,
+         "date":"2016-02-28T15:25:15.263Z",
+         "zone_id":"123",
+         "temp_v":"26.00",
+         "hum_v":"47.00",
+         "id":"eca8dfb5c9f9d9754ee56818ebcb212d"
+      }
+   ]
+}
+```
