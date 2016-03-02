@@ -39,3 +39,8 @@ Initialized sensor
 ApplicationClient Connected
 Temperature: 27.00C, humidity: 46.00%
 Publish: iot-2/type/RPi/id/RPi_test/evt/environment/fmt/json, {"environment":{"temp":{"v":"27.00","u":"C"},"hum":{"v":"46.00","u":"%"}},"zone":{"id":"123","name":"testPi"}}
+
+## Cloudant design documents
+
+* Run script to import / re-create cloudant design documents
+$> sudo node run initCloudant
