@@ -6,18 +6,7 @@ var _design = '_design/';
 
 var designDocumentName = _design + 'temperatureWithHumView';
 
-var temperatureWithHumView = require("./designDocuments/temperatureWithHumView.js");
-
-
-//register views, list, map/reduce functions
-
-var documents = {
-	views: {
-		allEntries: {
-			map: temperatureWithHumView
-		}
-	}
-}
+var temperatureWithHum = require("./designDocuments/temperatureWithHum.js");
 
 smartOfficeEnvDB.get(designDocumentName, { revs_info: true }, function(err, body) {
 	if (!err) {
@@ -25,19 +14,21 @@ smartOfficeEnvDB.get(designDocumentName, { revs_info: true }, function(err, body
 		smartOfficeEnvDB.destroy(designDocumentName, body._rev, function(err, body) {
 			if (!err) {
 				console.log('Design document: ' + designDocumentName + ' was removed from database.');
-				insertDesignDocument();
+				insertDesignDocument(temperatureWithHum, designDocumentName);
 			}
 		});
 	} else {
 		console.log('Design document: ' + designDocumentName + ' not found.');
-		insertDesignDocument();
+		insertDesignDocument(temperatureWithHum, designDocumentName);
 	}
 });
 
-function insertDesignDocument() {
-	smartOfficeEnvDB.insert(documents, designDocumentName, function(err, response){
+function insertDesignDocument(temprWithHum, docName) {
+	smartOfficeEnvDB.insert(temprWithHum, docName, function(err, response){
 		if(!err) {
-			console.log('New design document: ' + designDocumentName + ' was created.');
+			console.log('New design document: ' + docName + ' was created.');
+		} else {
+			console.log(err);
 		}
 	});
 }
