@@ -44,3 +44,8 @@ Publish: iot-2/type/RPi/id/RPi_test/evt/environment/fmt/json, {"environment":{"t
 
 * Run script to import / re-create cloudant design documents:
 $> sudo node run initCloudant
+
+## REST URIs
+
+# GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
+* Response 200 (text/json)
