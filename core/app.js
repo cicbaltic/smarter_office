@@ -38,6 +38,13 @@ app.get('/api/temperatures', temperatureController.listAll);
 var temperatureWithHumController = require('./rest/controllers/temperatureWithHum');
 app.get('/api/temperaturesWithHum', temperatureWithHumController.listAllWithStepInterval);
 
+app.get('/api/temperaturesWithHum/interval', function(req, res) {
+	params = {};
+	params['startWith'] = new Date('2016-02-28T15:24:54.278Z').getTime();
+	params['endWith'] = new Date('2016-02-28T17:50:11.032Z').getTime();
+	temperatureWithHumController.listByDatesInterval(req, res, params);
+});
+
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
