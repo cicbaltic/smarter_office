@@ -4,7 +4,7 @@ var smartOfficeEnvDB = nano.use('office_environment');
 
 var _design = '_design/';
 
-var designDocumentName = _design + 'temperatureWithHumView';
+var designDocumentName = _design + 'temperatureWithHum';
 
 var temperatureWithHum = require("./designDocuments/temperatureWithHum.js");
 

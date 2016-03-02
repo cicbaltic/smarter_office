@@ -35,6 +35,9 @@ app.use('/api', router);
 var temperatureController = require('./rest/controllers/temperature');
 app.get('/api/temperatures', temperatureController.listAll);
 
+var temperatureWithHumController = require('./rest/controllers/temperatureWithHum');
+app.get('/api/temperaturesWithHum', temperatureWithHumController.listAllWithStepInterval);
+
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
