@@ -20,11 +20,11 @@ $> sudo node run initCloudant
 
 ## REST URIs
 
-GET api/temperaturesWithHum
-* fetch all entries in the DB, using 15s step between them for each zone separately
+GET api/temperaturesAndHum/:step?
+* step represent minimum interval between two entries in seconds
 * Response 200 (text/json)
 * Sample call
-  api/temperaturesWithHum
+  api/temperaturesAndHum/15
 * Sample respond object:
 ```javascript
 {  
@@ -42,12 +42,12 @@ GET api/temperaturesWithHum
 }
 ```
 
-GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
-* startWith and endsWith parameters accept dates (e.g. 2014-10-10, 2014-10-10T10:10)
-* step parameter is optional and it accept int value (default value is 15s) which represent seconds
+GET api/temperaturesAndHumWithRange/:startsWith/:endsWith/:step?
+* startWith and endsWith represent range (e.g. 2014-10-10, 2014-10-10T10:10)
+* step represent minimum interval between two entries in seconds
 * Response 200 (text/json)
 * Sample call
-  api/temperaturesWithHum/2014-10-10/2017-10-10T10:10/16
+  api/temperaturesAndHumWithRange/2014-10-10/2017-10-10T10:10/16
 * Sample respond object:
 ```javascript
 {  
@@ -64,3 +64,36 @@ GET api/temperaturesWithHum/:startsWith/:endsWith/:step?
    ]
 }
 ```
+
+GET api/temperaturesAndHumWithZoneId/:zoneId
+* zoneId represent zone (e.g. one zone "123",  multiple zones "123,1,3")
+* Response 200 (text/json)
+* Sample call
+  api/temperaturesAndHumWithZoneId/123
+* Sample respond object:
+
+
+GET /api/temperaturesAndHumWithRangeAndZoneId/:startsWith/:endsWith/:zoneId/:step?
+* startWith and endsWith represent range (e.g. 2014-10-10, 2014-10-10T10:10)
+* zoneId represent zone (e.g. one zone "123",  multiple zones "123,1,3")
+* step represent minimum interval between two entries in seconds
+* Response 200 (text/json)
+* Sample call
+  api/temperaturesAndHumWithRangeAndZoneId/2014-10-10/2017-10-10T10:10/123
+* Sample respond object:
+```javascript
+{  
+   "size":415,
+   "rows":[  
+      {  
+         "timestamp":1456673115263,
+         "date":"2016-02-28T15:25:15.263Z",
+         "zone_id":"123",
+         "temp_v":"26.00",
+         "hum_v":"47.00",
+         "id":"eca8dfb5c9f9d9754ee56818ebcb212d"
+      }
+   ]
+}
+```
+
