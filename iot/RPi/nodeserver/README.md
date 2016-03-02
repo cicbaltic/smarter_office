@@ -42,5 +42,5 @@ Publish: iot-2/type/RPi/id/RPi_test/evt/environment/fmt/json, {"environment":{"t
 
 ## Cloudant design documents
 
-* Run script to import / re-create cloudant design documents
+* Run script to import / re-create cloudant design documents:
 $> sudo node run initCloudant
