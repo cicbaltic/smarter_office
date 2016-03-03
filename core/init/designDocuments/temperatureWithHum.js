@@ -8,7 +8,7 @@ documents.views.doc_by_time['map'] = function(doc){
 	emit([doc.time], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
 }
 
-documents.lists.docWithRange = function (head, req) {
+documents.lists['doc_with_range'] = function (head, req) {
 	var interval = 10000; 
 	if (req.query.interval) {
 		interval = req.query.interval; 

@@ -36,6 +36,7 @@ exports.listAllWithStep = function (req, res) {
 
 			}));
 		}
+		console.log(err);
 	});
 }
 
@@ -68,10 +69,12 @@ exports.listByRange = function (req, res) {
 
 				}));
 			}
+			console.log(err);
 		});
 	} else {
 		res.status(404).send();
 	}
+	console.log(err);
 }
 
 exports.listByZoneId = function (req, res) {
