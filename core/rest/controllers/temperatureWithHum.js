@@ -35,8 +35,9 @@ exports.listAllWithStep = function (req, res) {
 				'rows': temperatureWithHumList
 
 			}));
+		} else {
+			console.log(err);
 		}
-		console.log(err);
 	});
 }
 
@@ -68,13 +69,13 @@ exports.listByRange = function (req, res) {
 					'rows': temperatureWithHumList
 
 				}));
+			} else {
+				console.log(err);
 			}
-			console.log(err);
 		});
 	} else {
 		res.status(404).send();
 	}
-	console.log(err);
 }
 
 exports.listByZoneId = function (req, res) {
