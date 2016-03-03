@@ -1,7 +1,7 @@
 var config = require('./../config');
 var nano = require("nano")(config.dbUrl);
 var smartOfficeEnvDB = nano.use('office_environment');
-
+ 
 var temperatureWithHumName = 'temperatureWithHum';
 var temperatureWithHumObj= require("./designDocuments/temperatureWithHum.js");
 
@@ -9,6 +9,8 @@ var temperatureWithHumObj= require("./designDocuments/temperatureWithHum.js");
 var temperatureWithHum = new CloudantDesignDoc(temperatureWithHumName, temperatureWithHumObj);
 temperatureWithHum.createDesignObject();
 
+var zones = new CloudantDesignDoc("zones", require("./designDocuments/zones.js"));
+zones.createDesignObject();
 
 
 function CloudantDesignDoc(designDocName, obj) {

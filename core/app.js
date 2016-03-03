@@ -44,6 +44,9 @@ app.get('/api/temperaturesAndHumWithZoneId/:zoneId', temperatureWithHumControlle
 
 app.get('/api/temperaturesAndHumWithRangeAndZoneId/:startsWith/:endsWith/:zoneId/:step?', temperatureWithHumController.listByZoneIdAndRange);
 
+var zoneController = require('./rest/controllers/zoneIds');
+app.get('/api/zones', zoneController.listAll);
+
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
