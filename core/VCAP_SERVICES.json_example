@@ -1,0 +1,9 @@
+{
+	"cloudantNoSQLDB": [
+		{
+			"credentials" : {
+				"url": "{db_url}"
+			}
+		}
+	]
+}

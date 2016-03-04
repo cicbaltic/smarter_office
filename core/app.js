@@ -18,9 +18,9 @@ var router = express.Router();
 
 // ROUTES FOR REST API
 router.get('/', function (req, res) {
-    res.json({
-        message: 'hooray!welcome to our api!'
-    });
+	res.json({
+		message: 'hooray!welcome to our api!'
+	});
 });
 
 // register api routes
@@ -34,6 +34,18 @@ app.use('/api', router);
 
 var temperatureController = require('./rest/controllers/temperature');
 app.get('/api/temperatures', temperatureController.listAll);
+
+var temperatureWithHumController = require('./rest/controllers/temperatureWithHum');
+app.get('/api/temperaturesAndHum/:step?', temperatureWithHumController.listAllWithStep);
+
+app.get('/api/temperaturesAndHumWithRange/:startsWith/:endsWith/:step?',temperatureWithHumController.listByRange);
+
+app.get('/api/temperaturesAndHumWithZoneId/:zoneId', temperatureWithHumController.listByZoneId);
+
+app.get('/api/temperaturesAndHumWithRangeAndZoneId/:startsWith/:endsWith/:zoneId/:step?', temperatureWithHumController.listByZoneIdAndRange);
+
+var zoneController = require('./rest/controllers/zoneIds');
+app.get('/api/zones', zoneController.listAll);
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();

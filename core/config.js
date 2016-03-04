@@ -1,3 +1,14 @@
-exports.cloudant_url = "https://a526d510-b65a-437a-b350-264392592e8a-bluemix:235801bc29a05ee86af463546209491f17605d9f2803895985b6d9ebf7bc18eb@a526d510-b65a-437a-b350-264392592e8a-bluemix.cloudant.com";
-
-
+var vcapServices;
+if (process.env.VCAP_SERVICES) {
+    vcapServices = JSON.parse(process.env.VCAP_SERVICES);
+} else {
+    try {
+        // for local environment only
+        // file has to be placed in ./core directory
+        // and should not be commited
+        vcapServices = require('./VCAP_SERVICES.json');
+    } catch (e) {
+        console.error(e);
+    }
+}
+exports.dbUrl = vcapServices.cloudantNoSQLDB[0].credentials.url;

@@ -1,28 +1,30 @@
-angular.module('starter.controllers', [])
+var app = angular.module('starter.controllers', []);
 
-.controller('DashCtrl', function($scope) {})
+app.controller('mainController', function($scope, Temperatures, CurrentDate) {
+	$scope.currentTime = CurrentDate.get();
+	$scope.currentTemperature = Temperatures.getNewest();
+	console.log('test');
+});
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+app.controller('historyController', function($scope, Temperatures, CurrentDate) {
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
+	var labels = [];
+	var data = [];
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+	var temperatures = Temperatures.all();
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+	for (i = 0; i < temperatures.length; i++) {
+		labels[i] = temperatures[i].captureDateTime;
+		data[i] = temperatures[i].temperature;
+	}
+	
+	$scope.currentTime = CurrentDate.get();
+	$scope.labels = labels;
+	$scope.data = [ data ];
+});
+
+app.controller('AccountCtrl', function($scope) {
+	$scope.settings = {
+		enableFriends : true
+	};
 });

@@ -1,0 +1,16 @@
+{
+  "name": "nodeserver",
+  "version": "1.0.0",
+  "description": "Node application for RPi",
+  "main": "monitor.js",
+  "dependencies": {
+    "ibmiotf": "^0.2.11",
+    "node-dht-sensor": "^0.0.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cicb",
+  "license": ""
+}
