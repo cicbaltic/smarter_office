@@ -15,6 +15,7 @@
 		29F45ABD1C77102500AC876B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29F45ABB1C77102500AC876B /* LaunchScreen.storyboard */; };
 		29F45AC81C77102500AC876B /* smarter_officeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F45AC71C77102500AC876B /* smarter_officeTests.swift */; };
 		29F45AD31C77102600AC876B /* smarter_officeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F45AD21C77102600AC876B /* smarter_officeUITests.swift */; };
+		7D64A4E18879D96DA783A504 /* Pods_smarter_office.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F964ADC63744D2CE06709416 /* Pods_smarter_office.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,9 @@
 		29F45ACE1C77102500AC876B /* smarter-officeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "smarter-officeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F45AD21C77102600AC876B /* smarter_officeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smarter_officeUITests.swift; sourceTree = "<group>"; };
 		29F45AD41C77102600AC876B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F58D025CB109B7A97A4BF6B /* Pods-smarter-office.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smarter-office.release.xcconfig"; path = "Pods/Target Support Files/Pods-smarter-office/Pods-smarter-office.release.xcconfig"; sourceTree = "<group>"; };
+		ECF38E19325C3F394C0EAC8D /* Pods-smarter-office.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smarter-office.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smarter-office/Pods-smarter-office.debug.xcconfig"; sourceTree = "<group>"; };
+		F964ADC63744D2CE06709416 /* Pods_smarter_office.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smarter_office.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D64A4E18879D96DA783A504 /* Pods_smarter_office.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +88,8 @@
 				29F45AC61C77102500AC876B /* smarter-officeTests */,
 				29F45AD11C77102500AC876B /* smarter-officeUITests */,
 				29F45AAE1C77102500AC876B /* Products */,
+				35BD7882DF36B7D880C55F70 /* Pods */,
+				70D4B47EC237D7A7ED1476CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +135,23 @@
 			path = "smarter-officeUITests";
 			sourceTree = "<group>";
 		};
+		35BD7882DF36B7D880C55F70 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ECF38E19325C3F394C0EAC8D /* Pods-smarter-office.debug.xcconfig */,
+				5F58D025CB109B7A97A4BF6B /* Pods-smarter-office.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		70D4B47EC237D7A7ED1476CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F964ADC63744D2CE06709416 /* Pods_smarter_office.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29F45AD71C77102600AC876B /* Build configuration list for PBXNativeTarget "smarter-office" */;
 			buildPhases = (
+				765EF9954DE6C67DEBF33405 /* Check Pods Manifest.lock */,
 				29F45AA91C77102500AC876B /* Sources */,
 				29F45AAA1C77102500AC876B /* Frameworks */,
 				29F45AAB1C77102500AC876B /* Resources */,
+				8210003885F83CBF4E2B0AC4 /* Embed Pods Frameworks */,
+				4F09ECEBB70DA82C6DDB9D61 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,6 +280,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F09ECEBB70DA82C6DDB9D61 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-smarter-office/Pods-smarter-office-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		765EF9954DE6C67DEBF33405 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8210003885F83CBF4E2B0AC4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-smarter-office/Pods-smarter-office-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		29F45AA91C77102500AC876B /* Sources */ = {
@@ -401,6 +476,7 @@
 		};
 		29F45AD81C77102600AC876B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECF38E19325C3F394C0EAC8D /* Pods-smarter-office.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "smarter-office/Info.plist";
@@ -412,6 +488,7 @@
 		};
 		29F45AD91C77102600AC876B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F58D025CB109B7A97A4BF6B /* Pods-smarter-office.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "smarter-office/Info.plist";
@@ -488,6 +565,7 @@
 				29F45AD91C77102600AC876B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29F45ADA1C77102600AC876B /* Build configuration list for PBXNativeTarget "smarter-officeTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +574,7 @@
 				29F45ADC1C77102600AC876B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29F45ADD1C77102600AC876B /* Build configuration list for PBXNativeTarget "smarter-officeUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +583,7 @@
 				29F45ADF1C77102600AC876B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

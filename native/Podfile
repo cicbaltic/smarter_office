@@ -1,0 +1,7 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.2'
+use_frameworks!
+target 'smarter-office' do
+  pod 'Starscream', '~> 1.1.1'
+  pod 'Charts', '~> 2.2.3'
+end
