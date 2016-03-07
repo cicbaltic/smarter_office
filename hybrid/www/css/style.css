@@ -41,17 +41,3 @@
    font-weight: bold;
    color: #959595;
 } 
-
-.line-legend {
-	display: none;	
-}
-
-.text-center {
-	text-align: center;
-}
-
-.customized-tabs > .tabs {
-	border-top: 1px solid #ddd;
-	background-color: #F8F8F8;
-}
-

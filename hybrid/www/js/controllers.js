@@ -1,21 +1,12 @@
-
 angular
 		.module('starter.controllers', [])
 
-var app = angular.module('starter.controllers', []);
-
-		app.controller(
+		.controller(
 				'DashCtrl',
 				function($scope, TemperatureService, HumidityService,
 						TemperatureHistoryService, $state) {
 					$scope.disableTagButton = false;
 					$scope.disableTagButtonGraph = false;
-
-app.controller('mainController', function($scope, Temperatures, CurrentDate) {
-	$scope.currentTime = CurrentDate.get();
-	$scope.currentTemperature = Temperatures.getNewest();
-	console.log('test');
-});
 
 					var data = [ {
 						value : 22,
@@ -25,8 +16,6 @@ app.controller('mainController', function($scope, Temperatures, CurrentDate) {
 						color : "#E2EAE9"
 					} ]
 
-app.controller('historyController', function($scope, Temperatures, CurrentDate) {
-
 					var data2 = [ {
 						value : 14,
 						color : "#5AA700"
@@ -35,15 +24,10 @@ app.controller('historyController', function($scope, Temperatures, CurrentDate) 
 						color : "#E2EAE9"
 					} ]
 
-	var labels = [];
-	var data = [];
-
 					var optionsT = {
 						animation : true,
 						percentageInnerCutout : 80
 					}
-
-	var temperatures = Temperatures.all();
 
 					var optionsH = {
 						animation : true,
@@ -180,20 +164,3 @@ app.controller('historyController', function($scope, Temperatures, CurrentDate) 
 					$scope.data2 = [ [ 65, 59, 80, 81, 56, 55, 40 ] ];
 
 				})
-
-	for (i = 0; i < temperatures.length; i++) {
-		labels[i] = temperatures[i].captureDateTime;
-		data[i] = temperatures[i].temperature;
-	}
-	
-	$scope.currentTime = CurrentDate.get();
-	$scope.labels = labels;
-	$scope.data = [ data ];
-});
-
-app.controller('AccountCtrl', function($scope) {
-	$scope.settings = {
-		enableFriends : true
-	};
-});
-
