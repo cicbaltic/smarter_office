@@ -1,3 +1,33 @@
+<ion-view view-title="History"> <ion-content>
+<div class="row">
+	<div class="col-xs-12 col-md-12">
+		<h3>Temperature:</h3>
+	</div>
+</div>
+<div class="row">
+
+	<div class="col-xs-12 col-md-12">
+		<canvas id="line" class="chart chart-line" chart-data="data"
+			chart-labels="labels" chart-series="series">
+		</canvas>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 col-md-12">
+		<h3>Humidity:</h3>
+	</div>
+</div>
+<div class="row">
+
+	<div class="col-xs-12 col-md-12">
+		<canvas id="line" class="chart chart-line" chart-data="data2"
+			chart-labels="labels2" chart-series="series2">
+		</canvas>
+	</div>
+</div>
+</ion-content> </ion-view>
+
 <ion-view view-title="{{currentTime}}">
 	<ion-content>
 		<h4 class="text-center">History</h4>
@@ -8,3 +38,4 @@
 		</div>
 	</ion-content>
 </ion-view>
+

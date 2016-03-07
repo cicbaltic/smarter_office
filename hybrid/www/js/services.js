@@ -1,5 +1,25 @@
 var app = angular.module('starter.services', []);
 
+app.factory('TemperatureService', [
+		'$http',
+		function($http) {
+			var getData = function() {
+
+				return $http.get("http://localhost:6001/api/temperatures")
+						.then(function(response) {
+							var result = response.data;
+							temperature = result[0].doc.temperature;
+							return temperature;
+						});
+
+			};
+
+			return {
+				getTemperature : getData
+			};
+
+		} ])
+
 app.factory('RestAPI', function($http, APIEndpoints) {
 	return {
 		getTemperature : function() {
@@ -13,66 +33,35 @@ app.factory('RestAPI', function($http, APIEndpoints) {
 	}
 });
 
-app.factory('Temperatures', function() {
-	// var temperatures = function() {
-	// RestAPI.getTemperature().then(function(temp) {
-	// temp;
-	// }, function(temp) {
-	// [];
-	// })
-	// };
+app.factory('HumidityService', [ '$http', function($http) {
 
-	var temperatures = [ {
-		id : 0,
-		temperature : 20,
-		captureDateTime : "2016-01-01 10:25:33"
-	}, {
-		id : 1,
-		temperature : 21,
-		captureDateTime : "2016-01-02 12:25:33"
-	}, {
-		id : 2,
-		temperature : 22,
-		captureDateTime : "2016-01-03 13:25:33"
-	}, {
-		id : 3,
-		temperature : 10,
-		captureDateTime : "2016-01-04 13:25:33"
-	}, {
-		id : 4,
-		temperature : 11,
-		captureDateTime : "2016-01-05 13:25:33"
-	} ];
+	app.factory('Temperatures', function() {
 
-	return {
-		all : function() {
-			return temperatures;
-		},
-		getNewest : function() {
-			if (temperatures.length > 0) {
-				return temperatures[temperatures.length - 1];
+		var humidity = 312;
+		return {
+			getHumidity : function() {
+				return humidity;
 			}
-			return null;
+		};
+	})
+} ])
+
+app.factory('HumidityHistoryService', [ '$http', function($http) {
+
+	var humidityHistory = [ 65, 59, 80, 81, 56, 55, 40 ];
+	return {
+		getTemperature : function() {
+			return humidityHistory;
 		}
 	};
-});
+} ])
 
-app.factory('CurrentDate', function() {
-	var date = new Date();
-	month = '' + (date.getMonth() + 1);
-	day = '' + date.getDate();
-	year = date.getFullYear();
+app.factory('TemperatureHistoryService', [ '$http', function($http) {
 
-	if (month.length < 2) {
-		month = '0' + month;
-	}
-	if (day.length < 2) {
-		day = '0' + day;
-	}
-
+	var temperatureHistory = [ 19, 21, 20, 18, 21, 17, 17 ];
 	return {
-		get : function() {
-			return [ year, month, day ].join('/');
+		getTemperatureHistory : function() {
+			return temperatureHistory;
 		}
-	}
-});
+	};
+} ])
