@@ -12,6 +12,10 @@ temperatureWithHum.createDesignObject();
 var zones = new CloudantDesignDoc("zones", require("./designDocuments/zones.js"));
 zones.createDesignObject();
 
+var temperatureOnlyName = 'temperatureOnly';
+var temperatureOnlyObj = require("./designDocuments/temperatureOnly.js");;
+var temperatureOnly = new CloudantDesignDoc(temperatureOnlyName, temperatureOnlyObj)
+temperatureOnly.createDesignObject();
 
 function CloudantDesignDoc(designDocName, obj) {
 	var _design = '_design/';

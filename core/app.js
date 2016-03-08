@@ -32,16 +32,16 @@ app.use(express.static(__dirname + '/public'));
 // register api routes
 app.use('/api', router);
 
-var temperatureController = require('./rest/controllers/temperature');
-app.get('/api/temperatures', temperatureController.listAll);
+var temperatureOnlyController = require('./rest/controllers/temperatureOnly');
+app.get('/api/temperatures/step/:step?', temperatureOnlyController.listAllWithStep);
+app.get('/api/temperatures/zone/:zoneId', temperatureOnlyController.listByZoneId);
+app.get('/api/temperatures/from/:startsWith/to/:endsWith/step/:step?',temperatureOnlyController.listByRange);
+app.get('/api/temperatures/from/:startsWith/to/:endsWith/zone/:zoneId/step/:step?', temperatureOnlyController.listByZoneIdAndRange);
 
 var temperatureWithHumController = require('./rest/controllers/temperatureWithHum');
 app.get('/api/temperaturesAndHum/:step?', temperatureWithHumController.listAllWithStep);
-
 app.get('/api/temperaturesAndHumWithRange/:startsWith/:endsWith/:step?',temperatureWithHumController.listByRange);
-
 app.get('/api/temperaturesAndHumWithZoneId/:zoneId', temperatureWithHumController.listByZoneId);
-
 app.get('/api/temperaturesAndHumWithRangeAndZoneId/:startsWith/:endsWith/:zoneId/:step?', temperatureWithHumController.listByZoneIdAndRange);
 
 var zoneController = require('./rest/controllers/zoneIds');
