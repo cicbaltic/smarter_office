@@ -13,7 +13,10 @@ import Starscream
 class FirstViewController: UIViewController, WebSocketDelegate {
     @IBOutlet weak var temp: UILabel!
     @IBOutlet var lineChartView: LineChartView!
-    
+    @IBOutlet weak var outsideHumidity: UILabel!
+    @IBOutlet weak var outsideTemp: UILabel!
+    @IBOutlet weak var outsideFeels: UILabel!
+    @IBOutlet weak var outsideImage: UIImageView!
     var socket = WebSocket(url: NSURL(string: "ws://localhost:8001/")!)
 
     override func viewDidLoad() {
@@ -26,11 +29,30 @@ class FirstViewController: UIViewController, WebSocketDelegate {
         self.setChartData(months, unitsSold: unitsSold)
         socket.delegate = self
         socket.connect()
+        updateOutsideInfo()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateOutsideInfo() {
+        let ow = OpenWeather();
+        ow.updateAndGetData { (temperature, humidity, image, isSuccess) -> Void in
+                dispatch_async(dispatch_get_main_queue(), {
+                     if (isSuccess) {
+                        self.outsideHumidity.text = "Humidity: \(humidity)%"
+                        self.outsideTemp.text = NSString(format: "%.2f°C", temperature) as String
+                        self.outsideFeels.text =  NSString(format: "Feels like: %.2f°C", OpenWeather.getFeelsLikeInCelcius(temperature, currentHum: humidity)) as String
+                        if let weatherImage = image {
+                            self.outsideImage.image = weatherImage
+                        }
+                     } else {
+                        self.outsideTemp.text = "No connection"
+                    }
+                })
+        }
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
