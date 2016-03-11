@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import Starscream
+import KDCircularProgress
 
 class FirstViewController: UIViewController, WebSocketDelegate {
     @IBOutlet weak var temp: UILabel!
@@ -17,6 +18,10 @@ class FirstViewController: UIViewController, WebSocketDelegate {
     @IBOutlet weak var outsideTemp: UILabel!
     @IBOutlet weak var outsideFeels: UILabel!
     @IBOutlet weak var outsideImage: UIImageView!
+    @IBOutlet weak var humitidyProgress: KDCircularProgress!
+    @IBOutlet weak var tempProgress: KDCircularProgress!
+    @IBOutlet weak var humidity: UILabel!
+    
     var socket = WebSocket(url: NSURL(string: "ws://localhost:8001/")!)
 
     override func viewDidLoad() {
@@ -30,11 +35,35 @@ class FirstViewController: UIViewController, WebSocketDelegate {
         socket.delegate = self
         socket.connect()
         updateOutsideInfo()
+        updateHumidity(87)
+        updateTemp(22)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateHumidity(humidity:Double) {
+        let newAngle = Int(360 * (humidity / 100))
+        self.humidity.text = NSString(format: "%.0f %%", humidity) as String
+        self.humitidyProgress.animateToAngle(newAngle, duration: 2) { (_) -> Void in }
+        
+    }
+    
+    func updateTemp(temp:Double) {
+        //Assume 0min 40max
+        var newAngle:Int
+        if(temp > 40) {
+            newAngle = 360
+        } else if(temp < 0) {
+            newAngle = 0
+        } else {
+            newAngle = Int(360 * (temp / 40))
+        }
+        self.temp.text = NSString(format: "%.0f °C", temp) as String
+        self.tempProgress.animateToAngle(newAngle, duration: 2) { (_) -> Void in }
+        
     }
     
     func updateOutsideInfo() {
