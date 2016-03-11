@@ -15,6 +15,7 @@
 		29F45ABD1C77102500AC876B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29F45ABB1C77102500AC876B /* LaunchScreen.storyboard */; };
 		29F45AC81C77102500AC876B /* smarter_officeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F45AC71C77102500AC876B /* smarter_officeTests.swift */; };
 		29F45AD31C77102600AC876B /* smarter_officeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F45AD21C77102600AC876B /* smarter_officeUITests.swift */; };
+		5F8525901C92F4EC0046AFB8 /* OpenWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F85258F1C92F4EC0046AFB8 /* OpenWeather.swift */; };
 		7D64A4E18879D96DA783A504 /* Pods_smarter_office.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F964ADC63744D2CE06709416 /* Pods_smarter_office.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		29F45AD21C77102600AC876B /* smarter_officeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smarter_officeUITests.swift; sourceTree = "<group>"; };
 		29F45AD41C77102600AC876B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F58D025CB109B7A97A4BF6B /* Pods-smarter-office.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smarter-office.release.xcconfig"; path = "Pods/Target Support Files/Pods-smarter-office/Pods-smarter-office.release.xcconfig"; sourceTree = "<group>"; };
+		5F85258F1C92F4EC0046AFB8 /* OpenWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeather.swift; sourceTree = "<group>"; };
 		ECF38E19325C3F394C0EAC8D /* Pods-smarter-office.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smarter-office.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smarter-office/Pods-smarter-office.debug.xcconfig"; sourceTree = "<group>"; };
 		F964ADC63744D2CE06709416 /* Pods_smarter_office.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smarter_office.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -113,6 +115,7 @@
 				29F45AB91C77102500AC876B /* Assets.xcassets */,
 				29F45ABB1C77102500AC876B /* LaunchScreen.storyboard */,
 				29F45ABE1C77102500AC876B /* Info.plist */,
+				5F85258F1C92F4EC0046AFB8 /* OpenWeather.swift */,
 			);
 			path = "smarter-office";
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 			files = (
 				29F45AB51C77102500AC876B /* SecondViewController.swift in Sources */,
 				29F45AB11C77102500AC876B /* AppDelegate.swift in Sources */,
+				5F8525901C92F4EC0046AFB8 /* OpenWeather.swift in Sources */,
 				29F45AB31C77102500AC876B /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
