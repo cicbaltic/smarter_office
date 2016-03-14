@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var myApp = angular.module('starter', [ 'ionic', 'starter.Directives',
-		'starter.Controllers', 'chart.js' ]);
+		'starter.Controllers', 'starter.Services', 'chart.js' ]);
 
 myApp.run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
@@ -27,27 +27,21 @@ myApp.run(function($ionicPlatform) {
 	});
 });
 
+myApp.constant('Constants', {
+	temperatureConst : 30,
+	humidityConst : 100,
+});
+
 myApp.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('history', {
 		url : '/history/:zoneId/:order',
 		templateUrl : 'templates/history.html',
 		controller : 'historyController'
 	});
-	console.log($stateProvider);
+	$stateProvider.state('index', {
+		url : '/',
+		templateUrl : 'templates/main.html',
+		controller : 'indexController'
+	});
 	$urlRouterProvider.otherwise('/');
 });
-//
-// myApp.config(function($stateProvider, $urlRouterProvider) {
-//
-// $stateProvider.state('dashboard', {
-// url : '/dashboard',
-// views : {
-// 'dashboard' : {
-// templateUrl : 'templates/dashboard.html',
-// controller : 'indexController'
-// }
-// }
-// });
-//
-// $urlRouterProvider.otherwise('dashboard');
-// });

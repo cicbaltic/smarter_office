@@ -1,11 +1,41 @@
 var app = angular.module('starter.Controllers', []);
 
-app.controller('historyController', function($scope, $stateParams) {
-	$scope.zoneId = $stateParams.zoneId;
-	$scope.order = $stateParams.order;
-});
+app.controller('historyController',
+		function($scope, $stateParams, $ionicHistory) {
+			$scope.zoneId = $stateParams.zoneId;
+			$scope.order = $stateParams.order;
 
-app.controller('tempHumidityController', ['$scope','$timeout',  function($scope,timer) {
+			var temperatureData = [ [ 16, 15, 20, 12, 16, 12, 8 ] ];
+			var temperatureLabels = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+					'Sun' ];
+
+			var humidityData = [ [ 55, 23, 45, 32, 65, 65, 21 ] ];
+			var humidityLabels = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+					'Sun' ];
+
+			if ($stateParams.order === 'T') {
+				$scope.firstGraphTitle = 'Temperature';
+				$scope.firstGraphData = temperatureData;
+				$scope.firstGraphLabels = temperatureLabels
+
+				$scope.secondGraphTitle = 'Humidity';
+				$scope.secondGraphData = humidityData;
+				$scope.secondGraphLabels = humidityLabels;
+			} else {
+				$scope.firstGraphTitle = 'Humidity';
+				$scope.firstGraphData = humidityData;
+				$scope.firstGraphLabels = humidityLabels
+
+				$scope.secondGraphTitle = 'Temperature';
+				$scope.secondGraphData = temperatureData;
+				$scope.secondGraphLabels = temperatureLabels;
+			}
+			$scope.goBack = function() {
+				$ionicHistory.goBack();
+			};
+		});
+
+app.controller('tempHumidityController', ['$scope','$timeout',  function($scope,timer, Constants) {
 	$scope.zone = $scope.all.zone;
 
 	var uniqueId = Date.now();
@@ -15,10 +45,6 @@ app.controller('tempHumidityController', ['$scope','$timeout',  function($scope,
 	var temperature = $scope.all.temperature;
 	var humidity = $scope.all.humidity;
 
-	// constants
-	var topTemperature = 30;
-	var topHumidity = 100;
-
 	$scope.temperature = temperature;
 	$scope.humidity = humidity;
 
@@ -26,7 +52,7 @@ app.controller('tempHumidityController', ['$scope','$timeout',  function($scope,
 		value : temperature,
 		color : "#7CC7FF"
 	}, {
-		value : topTemperature - temperature,
+		value : Constants.temperatureConst - temperature,
 		color : "#E2EAE9"
 	} ];
 
@@ -34,7 +60,7 @@ app.controller('tempHumidityController', ['$scope','$timeout',  function($scope,
 		value : humidity,
 		color : "#5AA700"
 	}, {
-		value : topHumidity - humidity,
+		value : Constants.humidityConst - humidity,
 		color : "#E2EAE9"
 	} ];
 
@@ -102,20 +128,14 @@ app.controller('tempHumidityController', ['$scope','$timeout',  function($scope,
 	});
 }]);
 
-app.controller('indexController', function($scope) {
+app.controller('indexController', function($scope, TemperatureAndHumidityService) {
 
-	$scope.data = [ {
-		temperature : 20,
-		humidity : 70,
-		zone : 142
-	}, {
-		temperature : 10,
-		humidity : 80,
-		zone : 112
-	}, {
-		temperature : 26,
-		humidity : 45,
-		zone : 321
-	} ];
+	var data = TemperatureAndHumidityService.getData();
 
+	$scope.noData = false;
+	if (data.length === 0) {
+		$scope.noData = true;
+	}
+
+	$scope.data = data;
 });
