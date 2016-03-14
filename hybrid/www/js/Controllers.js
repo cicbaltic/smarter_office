@@ -35,7 +35,7 @@ app.controller('historyController',
 			};
 		});
 
-app.controller('tempHumidityController', ['$scope','$timeout',  function($scope,timer, Constants) {
+app.controller('tempHumidityController', ['$scope','$timeout','Constants', function($scope,timer, Constants) {
 	$scope.zone = $scope.all.zone;
 
 	var uniqueId = Date.now();
