@@ -35,7 +35,19 @@ app.controller('historyController',
 			};
 		});
 
-app.controller('tempHumidityController', ['$scope','$timeout','Constants', function($scope,timer, Constants) {
+app.controller('tempHumidityController', ['$scope','$timeout','Constants','coreService', function($scope,timer, Constants, coreService) {
+	
+	// api test
+	coreService.tempAndHum(null, function(response){
+		console.log(response);
+	});
+	coreService.tempAndHumWithRange(null, function(response){
+		console.log(response);
+	});
+	coreService.tempAndHumWithRangeAndZoneId(null, function(response){
+		console.log(response);
+	});
+	
 	$scope.zone = $scope.all.zone;
 
 	var uniqueId = Date.now();
