@@ -1,15 +1,15 @@
 <ion-view view-title="Zone '{{zoneId}}' history">
 	<ion-content on-swipe-right="goBack()">
-		<div>
-			<div>History of zone: {{zoneId}} Order: {{order}}</div>
+		<div class="history">
+			
 		
-			<div>{{firstGraphTitle}}</div>
+			<div class="graphHeader">{{firstGraphTitle}}</div>
 			<div>
 				<canvas id="bar" class="chart chart-line" chart-data="firstGraphData"
 					chart-labels="firstGraphLabels"></canvas>
 			</div>
 		
-			<div>{{secondGraphTitle}}</div>
+			<div  class="graphHeader">{{secondGraphTitle}}</div>
 			<div>
 				<canvas id="bar" class="chart chart-line" chart-data="secondGraphData"
 					chart-labels="secondGraphLabels"></canvas>

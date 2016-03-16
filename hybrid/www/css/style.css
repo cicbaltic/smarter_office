@@ -19,5 +19,29 @@
 }
 .zoneHeader{
 	padding-top:5px;
-	font-size:16px;
+	font-size:150%;
+}
+.bar-header{
+	background-color:#7CC7FF !important;
+}
+.history{
+	padding:10px;
+}
+.headerError{
+	font-size:28px;
+	font-weight:bold;
+	padding-bottom:5px;
+	padding-top:10px;
+}
+.errorBlock{
+	padding:10px;
+}
+.messageError{
+	font-size:14px;
+}
+.graphHeader{
+	font-size:14px;
+	font-weight:bold;
+	padding-bottom:5px;
+	padding-top:10px;
 }

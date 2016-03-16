@@ -1,18 +1,26 @@
 var app = angular.module('starter.Controllers', []);
 
 app.controller('historyController',
-		function($scope, $stateParams, $ionicHistory) {
-			$scope.zoneId = $stateParams.zoneId;
-			$scope.order = $stateParams.order;
-
-			var temperatureData = [ [ 16, 15, 20, 12, 16, 12, 8 ] ];
-			var temperatureLabels = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
-					'Sun' ];
-
-			var humidityData = [ [ 55, 23, 45, 32, 65, 65, 21 ] ];
-			var humidityLabels = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
-					'Sun' ];
-
+		function($scope, $stateParams, $ionicHistory,coreService,$filter) {
+	
+		$scope.zoneId = $stateParams.zoneId;
+		$scope.order = $stateParams.order;
+		
+		coreService.tempAndHumWithRangeAndZoneId(null, function(response){
+			var messageSize = response.data.size;
+			var data = [];
+			
+			var temperatureData = [[]];
+			var temperatureLabels = [];
+			var humidityData = [[]];
+			var humidityLabels = [];
+				
+			for(i = 0; i<messageSize; i++){
+				temperatureData[0][i] = response.data.rows[i].temp_v;
+				humidityData[0][i] = response.data.rows[i].hum_v;
+				humidityLabels[i] = $filter('date')(response.data.rows[i].timestamp,"dd");
+				temperatureLabels[i] = $filter('date')(response.data.rows[i].timestamp,"dd");
+			}
 			if ($stateParams.order === 'T') {
 				$scope.firstGraphTitle = 'Temperature';
 				$scope.firstGraphData = temperatureData;
@@ -30,26 +38,19 @@ app.controller('historyController',
 				$scope.secondGraphData = temperatureData;
 				$scope.secondGraphLabels = temperatureLabels;
 			}
+		});
+			
 			$scope.goBack = function() {
 				$ionicHistory.goBack();
 			};
 		});
 
-app.controller('tempHumidityController', ['$scope','$timeout','Constants','coreService', function($scope,timer, Constants, coreService) {
+app.controller('tempHumidityController', ['$scope','$timeout','Constants', function($scope,timer, Constants) {
 	
-	// api test
-	coreService.tempAndHum(null, function(response){
-		console.log(response);
-	});
-	coreService.tempAndHumWithRange(null, function(response){
-		console.log(response);
-	});
-	coreService.tempAndHumWithRangeAndZoneId(null, function(response){
-		console.log(response);
-	});
 	
 	$scope.zone = $scope.all.zone;
 
+	
 	var uniqueId = Date.now();
 	$scope.temperatureId = "T" + uniqueId;
 	$scope.humidityId = "H" + uniqueId;
@@ -99,7 +100,7 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','coreS
        		 var ctx = document.getElementById(chartIndex).getContext("2d");
        		 var cx = document.getElementById(chartIndex).offsetWidth / 2;
        	     var cy = document.getElementById(chartIndex).offsetHeight / 2;
-       		 var fontsize = document.getElementById(chartIndex).offsetWidth/5;
+       		 var fontsize = document.getElementById(chartIndex).offsetWidth/6;
        		 ctx.font = fontsize + "px Verdana";
        		 ctx.textBaseline = "middle";
        		 ctx.fillStyle = "black";
@@ -128,7 +129,7 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','coreS
         		 var ctx = document.getElementById(chartIndex).getContext("2d");
         		 var cx = document.getElementById(chartIndex).offsetWidth / 2;
         	     var cy = document.getElementById(chartIndex).offsetHeight / 2;
-        		 var fontsize = document.getElementById(chartIndex).offsetWidth/5;
+        		 var fontsize = document.getElementById(chartIndex).offsetWidth/6;
         		 ctx.font = fontsize + "px Verdana";
         		 ctx.textBaseline = "middle";
         		 ctx.fillStyle = "black";
@@ -140,14 +141,16 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','coreS
 	});
 }]);
 
-app.controller('indexController', function($scope, TemperatureAndHumidityService) {
-
-	var data = TemperatureAndHumidityService.getData();
-
-	$scope.noData = false;
-	if (data.length === 0) {
-		$scope.noData = true;
-	}
-
-	$scope.data = data;
-});
+app.controller('indexController', ['$scope','TemperatureAndHumidityService', function($scope, TemperatureAndHumidityService) {
+		var myDataPromise = TemperatureAndHumidityService.getTemperature();
+		myDataPromise.then(function(result) {
+			$scope.noData = false;
+			if (result.length === 0) {
+				$scope.noData = true;
+			}
+			else{
+				$scope.data = result;
+			}
+		});
+	
+}]);

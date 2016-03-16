@@ -5,9 +5,10 @@
 				<temp-hum index="$index" alldata="myData"></temp-hum>
 			</div>
 		</div>
-		<div ng-if="noData === true">
-			<div>Sorry</div>
-			<div>Failed to retrieve data!</div>
+		<div ng-if="noData === true" class="errorBlock">
+			<div class="headerError">Sorry!</div>
+			<div class="messageError">Failed to retrieve data! Try again later...</div>
+			<!-- <img src="../img/emoticon-snoozing.png"/ width="300px" style="padding-top:20px"> -->
 		</div>
 	</ion-content>
 </ion-view>
