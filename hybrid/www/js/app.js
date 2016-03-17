@@ -6,7 +6,7 @@
 var myApp = angular.module('starter', [ 'ionic', 'starter.Directives',
 		'starter.Controllers', 'starter.Services', 'chart.js' ]);
 
-myApp.run(function($ionicPlatform) {
+myApp.run(function($ionicPlatform, $rootScope, $state) {
 	$ionicPlatform.ready(function() {
 		if (window.cordova && window.cordova.plugins.Keyboard) {
 			// Hide the accessory bar by default (remove this to show the
@@ -23,6 +23,11 @@ myApp.run(function($ionicPlatform) {
 		}
 		if (window.StatusBar) {
 			StatusBar.styleDefault();
+		}
+	});
+	$rootScope.$on('$stateChangeSuccess', function(event, next, current) {
+		if ($state.current.name === 'index'){
+			$rootScope.$emit('indexRefresh');
 		}
 	});
 });

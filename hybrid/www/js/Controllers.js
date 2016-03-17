@@ -45,8 +45,14 @@ app.controller('historyController',
 			};
 		});
 
-app.controller('tempHumidityController', ['$scope','$timeout','Constants', function($scope,timer, Constants) {
-	
+app.controller('tempHumidityController', ['$scope','$timeout','Constants','$rootScope', '$timeout', 
+                                          function($scope,timer, Constants, $rootScope, $timeout) {
+	//back button bug fix
+	$rootScope.$on('indexRefresh', function() {	
+		$timeout(function(){
+			draw();
+		});
+    });	
 	
 	$scope.zone = $scope.all.zone;
 
@@ -60,85 +66,91 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants', funct
 
 	$scope.temperature = temperature;
 	$scope.humidity = humidity;
+	
+	var draw = function() {
 
-	var tempData = [ {
-		value : temperature,
-		color : "#7CC7FF"
-	}, {
-		value : Constants.temperatureConst - temperature,
-		color : "#E2EAE9"
-	} ];
-
-	var humidityData = [ {
-		value : humidity,
-		color : "#5AA700"
-	}, {
-		value : Constants.humidityConst - humidity,
-		color : "#E2EAE9"
-	} ];
-
-	// below code should be changed. There should be another way to get element
-	// by unique id, which is generated runtime..
-	var ind = $scope.index * 2;
-	var humidityIndex = ind + 1;
-
-	var elem = document.getElementsByTagName('canvas')[ind];
-
-	var ctx = elem.getContext("2d");
-	ctx.canvas.width = 300;
-	ctx.canvas.height = 300;
-
-	new Chart(ctx).Doughnut(tempData, {
-		animation : true,
-		responsive : true,
-		showTooltips : false,
-		percentageInnerCutout : 80,
-		segmentShowStroke : false,
-		onAnimationComplete : function() {
-			 var hello = function () {		          
-           	 var chartIndex=$scope.temperatureId;      	
-       		 var ctx = document.getElementById(chartIndex).getContext("2d");
-       		 var cx = document.getElementById(chartIndex).offsetWidth / 2;
-       	     var cy = document.getElementById(chartIndex).offsetHeight / 2;
-       		 var fontsize = document.getElementById(chartIndex).offsetWidth/6;
-       		 ctx.font = fontsize + "px Verdana";
-       		 ctx.textBaseline = "middle";
-       		 ctx.fillStyle = "black";
-       		 ctx.textAlign = "center";
-       		 ctx.fillText($scope.temperature+"°C", cx, cy);    		 
-           }
-           timer(hello, 0);
-		}
-	});
-
-	var elem2 = document.getElementsByTagName('canvas')[humidityIndex];
-
-	var ctx2 = elem2.getContext("2d");
-	ctx2.canvas.width = 300;
-	ctx2.canvas.height = 300;
-
-	new Chart(ctx2).Doughnut(humidityData, {
-		animation : true,
-		responsive : true,
-		showTooltips : false,
-		percentageInnerCutout : 80,
-		segmentShowStroke : false,
-		onAnimationComplete : function() {
-			 var hello = function () {    
-        		 var chartIndex=$scope.humidityId;	    
-        		 var ctx = document.getElementById(chartIndex).getContext("2d");
-        		 var cx = document.getElementById(chartIndex).offsetWidth / 2;
-        	     var cy = document.getElementById(chartIndex).offsetHeight / 2;
-        		 var fontsize = document.getElementById(chartIndex).offsetWidth/6;
-        		 ctx.font = fontsize + "px Verdana";
-        		 ctx.textBaseline = "middle";
-        		 ctx.fillStyle = "black";
-        		 ctx.textAlign = "center";
-        		 ctx.fillText($scope.humidity+"%", cx, cy);
-            }
-            timer(hello, 0);
-		}
-	});
+		var tempData = [ {
+			value : temperature,
+			color : "#7CC7FF"
+		}, {
+			value : Constants.temperatureConst - temperature,
+			color : "#E2EAE9"
+		} ];
+	
+		var humidityData = [ {
+			value : humidity,
+			color : "#5AA700"
+		}, {
+			value : Constants.humidityConst - humidity,
+			color : "#E2EAE9"
+		} ];
+	
+		// below code should be changed. There should be another way to get element
+		// by unique id, which is generated runtime..
+		var ind = $scope.index * 2;
+		var humidityIndex = ind + 1;
+	
+		var elem = document.getElementsByTagName('canvas')[ind];
+	
+		var ctx = elem.getContext("2d");
+		ctx.canvas.width = 300;
+		ctx.canvas.height = 300;
+		
+		
+	
+		new Chart(ctx).Doughnut(tempData, {
+			animation : true,
+			responsive : true,
+			showTooltips : false,
+			percentageInnerCutout : 80,
+			segmentShowStroke : false,
+			onAnimationComplete : function() {
+				 var hello = function () {		          
+	           	 var chartIndex=$scope.temperatureId;      	
+	       		 var ctx = document.getElementById(chartIndex).getContext("2d");
+	       		 var cx = document.getElementById(chartIndex).offsetWidth / 2;
+	       	     var cy = document.getElementById(chartIndex).offsetHeight / 2;
+	       		 var fontsize = document.getElementById(chartIndex).offsetWidth/6;
+	       		 ctx.font = fontsize + "px Verdana";
+	       		 ctx.textBaseline = "middle";
+	       		 ctx.fillStyle = "black";
+	       		 ctx.textAlign = "center";
+	       		 ctx.fillText($scope.temperature+"°C", cx, cy);    		 
+	           }
+	           timer(hello, 0);
+			}
+		});
+	
+		var elem2 = document.getElementsByTagName('canvas')[humidityIndex];
+	
+		var ctx2 = elem2.getContext("2d");
+		ctx2.canvas.width = 300;
+		ctx2.canvas.height = 300;
+	
+		new Chart(ctx2).Doughnut(humidityData, {
+			animation : true,
+			responsive : true,
+			showTooltips : false,
+			percentageInnerCutout : 80,
+			segmentShowStroke : false,
+			onAnimationComplete : function() {
+				 var hello = function () {    
+	        		 var chartIndex=$scope.humidityId;	    
+	        		 var ctx = document.getElementById(chartIndex).getContext("2d");
+	        		 var cx = document.getElementById(chartIndex).offsetWidth / 2;
+	        	     var cy = document.getElementById(chartIndex).offsetHeight / 2;
+	        		 var fontsize = document.getElementById(chartIndex).offsetWidth/6;
+	        		 ctx.font = fontsize + "px Verdana";
+	        		 ctx.textBaseline = "middle";
+	        		 ctx.fillStyle = "black";
+	        		 ctx.textAlign = "center";
+	        		 ctx.fillText($scope.humidity+"%", cx, cy);
+	            }
+	            timer(hello, 0);
+			}
+		});	
+	}
+	draw();
 }]);
 
 app.controller('indexController', ['$scope','TemperatureAndHumidityService', function($scope, TemperatureAndHumidityService) {
