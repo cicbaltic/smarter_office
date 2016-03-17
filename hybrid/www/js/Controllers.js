@@ -45,8 +45,8 @@ app.controller('historyController',
 			};
 		});
 
-app.controller('tempHumidityController', ['$scope','$timeout','Constants','$rootScope', '$timeout', 
-                                          function($scope,timer, Constants, $rootScope, $timeout) {
+app.controller('tempHumidityController', ['$scope','$timeout','Constants','$rootScope', '$timeout', 'colorService', 
+                                          function($scope,timer, Constants, $rootScope, $timeout, colorService) {
 	//back button bug fix
 	$rootScope.$on('indexRefresh', function() {	
 		$timeout(function(){
@@ -71,7 +71,7 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','$root
 
 		var tempData = [ {
 			value : temperature,
-			color : "#7CC7FF"
+			color : colorService.tempColor(temperature)
 		}, {
 			value : Constants.temperatureConst - temperature,
 			color : "#E2EAE9"
@@ -79,7 +79,7 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','$root
 	
 		var humidityData = [ {
 			value : humidity,
-			color : "#5AA700"
+			color : colorService.humColor(humidity)
 		}, {
 			value : Constants.humidityConst - humidity,
 			color : "#E2EAE9"
