@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var myApp = angular.module('starter', [ 'ionic', 'starter.Directives',
-		'starter.Controllers', 'starter.Services', 'chart.js' ]);
+		'starter.Controllers', 'starter.Services', 'chart.js']);
 
 myApp.run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {

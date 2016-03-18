@@ -1,19 +1,90 @@
-<ion-view view-title="Zone '{{zoneId}}' history">
-	<ion-content on-swipe-right="goBack()">
-		<div class="history">
-			
-		
-			<div class="graphHeader">{{firstGraphTitle}}</div>
-			<div>
-				<canvas id="bar" class="chart chart-line" chart-data="firstGraphData"
-					chart-labels="firstGraphLabels"></canvas>
-			</div>
-		
-			<div  class="graphHeader">{{secondGraphTitle}}</div>
-			<div>
-				<canvas id="bar" class="chart chart-line" chart-data="secondGraphData"
-					chart-labels="secondGraphLabels"></canvas>
+<ion-view view-title="Zone '{{zoneId}}' history"> <ion-content
+	on-swipe-right="goBack()">
+<div class="history">
+
+
+	<div class="graphHeader">{{firstGraphTitle}}</div>
+	<div>
+		<canvas id="bar" class="chart chart-line" chart-data="firstGraphData"
+			chart-labels="firstGraphLabels"></canvas>
+
+
+	</div>
+	<div>
+		<div class="list">
+			<div class="item range range-positive">
+				<i class="icon ion-android-time"></i> <input type="range"
+					name="volume" min="0" max="2" value="0"> <i
+					class="icon ion-android-time"></i>
 			</div>
 		</div>
-	</ion-content>
-</ion-view>
+
+	</div>
+	<div>
+		<label class="item item-input"> <span class="input-label">From
+				Date:</span>
+			<div class="dateCss">
+				<input type="date">
+			</div>
+		</label> <label class="item item-input"> <span class="input-label">Hour:</span>
+			<div class="timeCss">
+				<input type="time">
+			</div>
+		</label> <label class="item item-input"> <span class="input-label">To
+				Date:</span>
+			<div class="dateCss">
+				<input type="date">
+			</div>
+		</label> <label class="item item-input"> <span class="input-label">Hour:</span>
+			<div class="timeCss">
+				<input type="time">
+			</div>
+		</label>
+		<button class="button button-block button-calm">Apply</button>
+	</div>
+
+	<div class="graphHeader">{{secondGraphTitle}}</div>
+	<div>
+		<canvas id="bar" class="chart chart-line" chart-data="secondGraphData"
+			chart-labels="secondGraphLabels"></canvas>
+	</div>
+	<div>
+		<!-- <label class="item item-input" ng-click="openDatePicker()">
+                <span class="input-label">From date</span>
+                 <input type="text" ng-model="formattedFromDate" readonly>
+                 
+              </label> -->
+
+		<div class="list">
+			<div class="item range range-positive">
+				<i class="icon ion-android-time"></i> <input type="range"
+					name="volume" min="0" max="2" value="0"> <i
+					class="icon ion-android-time"></i>
+			</div>
+		</div>
+
+	</div>
+	<div>
+		<label class="item item-input"> <span class="input-label">From
+				Date:</span>
+			<div class="dateCss">
+				<input type="date">
+			</div>
+		</label> <label class="item item-input"> <span class="input-label">Hour:</span>
+			<div class="timeCss">
+				<input type="time">
+			</div>
+		</label> <label class="item item-input"> <span class="input-label">To
+				Date:</span>
+			<div class="dateCss">
+				<input type="date">
+			</div>
+		</label> <label class="item item-input"> <span class="input-label">Hour:</span>
+			<div class="timeCss">
+				<input type="time">
+			</div>
+		</label>
+	</div>
+	<button class="button button-block button-calm">Apply</button>
+</div>
+</ion-content> </ion-view>
