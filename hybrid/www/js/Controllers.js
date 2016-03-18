@@ -43,6 +43,7 @@ app.controller('historyController',
 			$scope.goBack = function() {
 				$ionicHistory.goBack();
 			};
+			
 		});
 
 app.controller('tempHumidityController', ['$scope','$timeout','Constants','$rootScope', '$timeout', 'colorService', 

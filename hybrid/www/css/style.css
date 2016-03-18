@@ -45,3 +45,12 @@
 	padding-bottom:5px;
 	padding-top:10px;
 }
+
+.dateCss{
+	background-color:#ebebe0 !important;
+	width:40%  !important;
+}
+.timeCss{
+	background-color: #ebebe0 !important;
+	width:40%  !important;
+}
