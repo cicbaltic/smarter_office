@@ -1,6 +1,6 @@
 var config = require('./../config');
 var nano = require("nano")(config.dbUrl);
-var smartOfficeEnvDB = nano.use('office_environment');
+var smartOfficeEnvDB = nano.use('temperature');
  
 var temperatureWithHumName = 'temperatureWithHum';
 var temperatureWithHumObj= require("./designDocuments/temperatureWithHum.js");
