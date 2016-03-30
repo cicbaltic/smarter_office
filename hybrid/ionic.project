@@ -3,8 +3,8 @@
   "app_id": "",
   "proxies": [
     {
-      "path": "/temperatureAPIEndpoint",
-      "proxyUrl": "http://localhost:6001/api/temperatures"
+      "path": "/api",
+      "proxyUrl": "*"
     }
   ]
 }

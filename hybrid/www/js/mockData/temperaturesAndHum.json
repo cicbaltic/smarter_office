@@ -1,5 +1,5 @@
 {  
-   "size":3,
+   "size":1,
    "rows":[  
       {  
          "timestamp":1456673115263,
@@ -7,22 +7,6 @@
          "zone_id":"123",
          "temp_v":"26.00",
          "hum_v":"47.00",
-         "id":"eca8dfb5c9f9d9754ee56818ebcb212d"
-      },
-      {  
-         "timestamp":1456673115263,
-         "date":"2016-02-28T15:25:15.263Z",
-         "zone_id":"99",
-         "temp_v":"18.00",
-         "hum_v":"87.00",
-         "id":"eca8dfb5c9f9d9754ee56818ebcb212d"
-      },
-      {  
-         "timestamp":1456673115263,
-         "date":"2016-02-28T15:25:15.263Z",
-         "zone_id":"88",
-         "temp_v":"16.00",
-         "hum_v":"67.00",
          "id":"eca8dfb5c9f9d9754ee56818ebcb212d"
       }
    ]
