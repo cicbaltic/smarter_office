@@ -5,6 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="owfont-regular.otf">
+            <string>owf-regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Dashboard-->
         <scene sceneID="hNz-n2-bh7">
@@ -18,6 +23,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="G9k-s2-HbN">
+                                <rect key="frame" x="0.0" y="0.0" width="2448" height="2448"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hVU-2o-6ib">
                                 <rect key="frame" x="0.0" y="-20" width="600" height="640"/>
                                 <subviews>
@@ -30,17 +38,21 @@
                                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="iZQ-cN-HEq" customClass="KDCircularProgress" customModule="KDCircularProgress">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="320"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- °C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8u-gg-jVT">
-                                                                <rect key="frame" x="127" y="145" width="47" height="33"/>
-                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IBM Lietuva:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H4-9p-vdC">
-                                                                <rect key="frame" x="12" y="46" width="143" height="33"/>
+                                                                <rect key="frame" x="12" y="46" width="144" height="35"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <color key="shadowColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <size key="shadowOffset" width="1" height="2"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- °C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8u-gg-jVT">
+                                                                <rect key="frame" x="126" y="144" width="48" height="35"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <color key="shadowColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <size key="shadowOffset" width="1" height="2"/>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,7 +64,7 @@
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="IBColor1">
-                                                                <color key="value" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
                                                                 <real key="value" value="0.20000000000000001"/>
@@ -61,18 +73,24 @@
                                                                 <color key="value" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="progressThickness">
-                                                                <real key="value" value="0.10000000000000001"/>
+                                                                <real key="value" value="0.20000000000000001"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="glowAmount">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundedCorners" value="NO"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="NRR-ez-W0C" customClass="KDCircularProgress" customModule="KDCircularProgress">
                                                         <rect key="frame" x="300" y="0.0" width="300" height="320"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- %" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oj3-Eb-be9">
-                                                                <rect key="frame" x="131" y="144" width="38" height="33"/>
+                                                                <rect key="frame" x="131" y="142" width="39" height="35"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <color key="shadowColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <size key="shadowOffset" width="1" height="2"/>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -96,7 +114,7 @@
                                                                 <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="progressThickness">
-                                                                <real key="value" value="0.10000000000000001"/>
+                                                                <real key="value" value="0.20000000000000001"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
                                                                 <real key="value" value="0.20000000000000001"/>
@@ -114,42 +132,56 @@
                                         <rect key="frame" x="0.0" y="320" width="600" height="320"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outside:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPM-b5-MYw">
-                                                <rect key="frame" x="12" y="8" width="99" height="33"/>
+                                                <rect key="frame" x="12" y="8" width="100" height="35"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <size key="shadowOffset" width="1" height="2"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-°C" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azH-gV-ViM">
-                                                <rect key="frame" x="12" y="83" width="222" height="26"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-°C" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azH-gV-ViM">
+                                                <rect key="frame" x="189" y="83" width="41" height="35"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <size key="shadowOffset" width="1" height="2"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Humidity: - %" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVS-6D-uMI">
-                                                <rect key="frame" x="12" y="117" width="222" height="20"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity: - %" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVS-6D-uMI">
+                                                <rect key="frame" x="115" y="126" width="115" height="25"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <size key="shadowOffset" width="1" height="2"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Feels:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aX7-JP-sVA">
-                                                <rect key="frame" x="12" y="150" width="222" height="20"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arg-rt-0hJ">
+                                                <rect key="frame" x="157" y="8" width="73" height="72"/>
+                                                <fontDescription key="fontDescription" name="owf-regular" family="owf-regular" pointSize="74"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <size key="shadowOffset" width="1" height="2"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ChW-kc-MsO">
-                                                <rect key="frame" x="138" y="8" width="100" height="60"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="6YC-VX-6bZ"/>
-                                                    <constraint firstAttribute="height" constant="60" id="Cq5-So-95H"/>
-                                                    <constraint firstAttribute="width" constant="100" id="Iku-Yf-HZ5"/>
-                                                </constraints>
-                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feels:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aX7-JP-sVA">
+                                                <rect key="frame" x="178" y="164" width="52" height="25"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <color key="shadowColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <size key="shadowOffset" width="1" height="2"/>
+                                            </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="ChW-kc-MsO" firstAttribute="top" secondItem="KGf-UQ-XPA" secondAttribute="top" constant="8" id="AMa-mF-Arm"/>
-                                            <constraint firstItem="ChW-kc-MsO" firstAttribute="leading" secondItem="qPM-b5-MYw" secondAttribute="trailing" constant="27" id="Zhb-Nk-L7L"/>
+                                            <constraint firstItem="VVS-6D-uMI" firstAttribute="top" secondItem="azH-gV-ViM" secondAttribute="bottom" constant="8" id="BVk-PF-TCw"/>
+                                            <constraint firstItem="aX7-JP-sVA" firstAttribute="top" secondItem="VVS-6D-uMI" secondAttribute="bottom" constant="13" id="BuB-g3-fYe"/>
+                                            <constraint firstItem="arg-rt-0hJ" firstAttribute="leading" secondItem="qPM-b5-MYw" secondAttribute="trailing" constant="45" id="DGZ-0O-DzS"/>
+                                            <constraint firstItem="aX7-JP-sVA" firstAttribute="trailing" secondItem="arg-rt-0hJ" secondAttribute="trailing" id="DJq-aW-ORq"/>
+                                            <constraint firstItem="azH-gV-ViM" firstAttribute="trailing" secondItem="arg-rt-0hJ" secondAttribute="trailing" id="UvR-fa-IDx"/>
+                                            <constraint firstItem="arg-rt-0hJ" firstAttribute="top" secondItem="KGf-UQ-XPA" secondAttribute="top" constant="8" id="YwI-3o-XHt"/>
                                             <constraint firstItem="qPM-b5-MYw" firstAttribute="top" secondItem="KGf-UQ-XPA" secondAttribute="top" constant="8" id="cGU-UG-AkA"/>
+                                            <constraint firstItem="VVS-6D-uMI" firstAttribute="trailing" secondItem="arg-rt-0hJ" secondAttribute="trailing" id="pzb-Cg-7W7"/>
+                                            <constraint firstItem="azH-gV-ViM" firstAttribute="top" secondItem="arg-rt-0hJ" secondAttribute="bottom" constant="3" id="tg3-LG-Rpc"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -173,10 +205,10 @@
                         <outlet property="humitidyProgress" destination="NRR-ez-W0C" id="gxx-bh-c6j"/>
                         <outlet property="outsideFeels" destination="aX7-JP-sVA" id="Mob-Gp-ahJ"/>
                         <outlet property="outsideHumidity" destination="VVS-6D-uMI" id="6Tc-1O-IuE"/>
-                        <outlet property="outsideImage" destination="ChW-kc-MsO" id="Ffk-8B-unX"/>
                         <outlet property="outsideTemp" destination="azH-gV-ViM" id="zxR-HZ-PzU"/>
                         <outlet property="temp" destination="g8u-gg-jVT" id="cqY-Nj-r9u"/>
                         <outlet property="tempProgress" destination="iZQ-cN-HEq" id="Im3-5K-gGB"/>
+                        <outlet property="weatherIcon" destination="arg-rt-0hJ" id="O1Y-4r-28a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -232,6 +264,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Background" width="2448" height="2448"/>
         <image name="history" width="32" height="32"/>
         <image name="live" width="32" height="32"/>
     </resources>
