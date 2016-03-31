@@ -8,7 +8,10 @@ services.factory('TemperatureAndHumidityService', [
 					return $http
 					.get(
 							ApiEndpoint.url
-									+ '/temperaturesAndHumWithRange/2016-03-30/2016-03-30T23:59/1').then(
+									+ '/temperaturesAndHumWithRange/2016-03-30/2016-03-30T23:59/1',
+									{
+										timeout: 5000
+									}).then(
 							function successCallback(response) {
 								var messageSize = response.data.size;		
 								var data = [];
