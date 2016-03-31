@@ -42,7 +42,7 @@ var temperatureWithHumController = require('./rest/controllers/temperatureWithHu
 app.get('/api/temperaturesAndHum/:step?', temperatureWithHumController.listAllWithStep);
 app.get('/api/temperaturesAndHumWithRange/:startsWith/:endsWith/:step?',temperatureWithHumController.listByRange);
 app.get('/api/temperaturesAndHumWithZoneId/:zoneId', temperatureWithHumController.listByZoneId);
-app.get('/api/temperaturesAndHumWithRangeAndZoneId/:startsWith/:endsWith/:zoneId/:step?', temperatureWithHumController.listByZoneIdAndRange);
+app.get('/api/latestTemperaturesAndHumByZoneIds', temperatureWithHumController.latestTemperaturesAndHumByZoneIds);
 
 var zoneController = require('./rest/controllers/zoneIds');
 app.get('/api/zones', zoneController.listAll);
