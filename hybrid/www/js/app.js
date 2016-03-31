@@ -34,8 +34,12 @@ myApp.run(function($ionicPlatform, $rootScope, $state) {
 
 myApp.constant('Constants', {
 	temperatureConst : 30,
-	humidityConst : 100,
+	humidityConst : 100
 });
+
+myApp.constant('ApiEndpoint', {
+	  url: 'http://localhost:8100/api'
+	}); 
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('history', {

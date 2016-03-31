@@ -5,15 +5,15 @@ app.controller('historyController',
 	
 		$scope.zoneId = $stateParams.zoneId;
 		$scope.order = $stateParams.order;
-		
+		var temperatureData = [[]];
+		var temperatureLabels = [];
+		var humidityData = [[]];
+		var humidityLabels = [];
 		coreService.tempAndHumWithRangeAndZoneId(null, function(response){
 			var messageSize = response.data.size;
 			var data = [];
 			
-			var temperatureData = [[]];
-			var temperatureLabels = [];
-			var humidityData = [[]];
-			var humidityLabels = [];
+			
 				
 			for(i = 0; i<messageSize; i++){
 				temperatureData[0][i] = response.data.rows[i].temp_v;
@@ -43,6 +43,54 @@ app.controller('historyController',
 			$scope.goBack = function() {
 				$ionicHistory.goBack();
 			};
+			var p1 = document.getElementById("rangeValue1");
+			var res1 = document.getElementById("rangeValueText1");
+			p1.addEventListener("input", function() {
+				
+				if(p1.value == 0){
+					res1.innerHTML = "Days";
+					$scope.firstGraphData = temperatureData;
+					$scope.firstGraphLabels = temperatureLabels;
+					$scope.$apply();
+				}
+				if(p1.value == 1){
+					res1.innerHTML = "Hours";
+					$scope.firstGraphData = humidityData;
+					$scope.firstGraphLabels = humidityLabels;
+					$scope.$apply();
+					
+				}
+				if(p1.value == 2){
+					res1.innerHTML = "Minutes";
+					$scope.firstGraphData = temperatureData;
+					$scope.firstGraphLabels = temperatureLabels;
+					$scope.$apply();
+				}
+			}, false); 
+			
+			var p2 = document.getElementById("rangeValue2");
+			var res2 = document.getElementById("rangeValueText2");
+			p2.addEventListener("input", function() {
+				if(p2.value == 0){
+					res2.innerHTML = "Days";
+					$scope.secondGraphData = temperatureData;
+					$scope.secondGraphLabels = temperatureLabels;
+					$scope.$apply();
+				}
+				if(p2.value == 1){
+					res2.innerHTML = "Hours";
+					$scope.secondGraphData = humidityData;
+					$scope.secondGraphLabels = humidityLabels;
+					$scope.$apply();
+					
+				}
+				if(p2.value == 2){
+					res2.innerHTML = "Minutes";
+					$scope.secondGraphData = temperatureData;
+					$scope.secondGraphLabels = temperatureLabels;
+					$scope.$apply();
+				}
+			}, false); 
 			
 		});
 
@@ -165,5 +213,16 @@ app.controller('indexController', ['$scope','TemperatureAndHumidityService', fun
 				$scope.data = result;
 			}
 		});
-	
+		$scope.doRefresh = function() {
+			myDataPromise.then(function(result) {
+				$scope.noData = false;
+				if (result.length === 0) {
+					$scope.noData = true;
+				}
+				else{
+					$scope.data = result;
+				}
+			});
+			$scope.$broadcast("scroll.refreshComplete");
+		} 
 }]);

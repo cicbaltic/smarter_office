@@ -30,15 +30,9 @@ class OpenWeather {
             return "http://api.openweathermap.org/data/2.5/weather?lat=\(self.lat)&lon=\(self.lon)&appid=\(self.APIKEY)"
         }
     }
-    var imageName:String?
-    var imageURL:String {
-        get{
-            if (self.imageName != nil) {
-                return "http://openweathermap.org/img/w/\(self.imageName!).png"
-            } else {return ""}
-        }
-    }
     
+    var weatherID:Int?
+        
     var weatherPic:UIImage?
     
     init(lat:Double, lon:Double){
@@ -51,20 +45,20 @@ class OpenWeather {
         self.init(lat: 54.694436,lon: 25.282658)
     }
     
-    func updateAndGetData(callback: (temperature:Double, humidity:Double, weatherImage:UIImage?, isSuccess:Bool) -> Void) {
+    func updateAndGetData(callback: (temperature:Double, humidity:Double, weatherID:Int?, isSuccess:Bool) -> Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: self.URL)!)
         httpGet(request){
             (data, error) -> Void in
             if error != nil {
                 print("Error in connection: \(error)")
-                return callback(temperature: 0, humidity: 0, weatherImage: self.weatherPic, isSuccess: false)
+                return callback(temperature: 0, humidity: 0, weatherID: self.weatherID, isSuccess: false)
             } else {
                 let jsonRes = data.dataUsingEncoding(NSUTF8StringEncoding)
                 self.parseJSON(jsonRes!)
                 guard let temperature = self.temperatureInCelsius,
                     let humidity = self.humidity
                     else{return                }
-                callback(temperature: temperature, humidity: humidity, weatherImage: self.weatherPic, isSuccess: true)
+                callback(temperature: temperature, humidity: humidity, weatherID: self.weatherID, isSuccess: true)
             }
         }
     }
@@ -111,9 +105,9 @@ class OpenWeather {
                 self.humidity = humidity
             }
             if let weather = json["weather"] as? [[String: AnyObject]] {
-                if let picName = weather[0]["icon"] as? String {
-                    self.imageName = picName
-                    setWeatherImage()
+                if let picName = weather[0]["id"] as? Int {
+                    self.weatherID = picName
+                    print(picName)
                 }
             }
         } catch {
@@ -121,15 +115,6 @@ class OpenWeather {
         }
     }
     
-    private func setWeatherImage() {
-        do {
-            if let url  = NSURL(string: self.imageURL),
-                data = NSData(contentsOfURL: url)
-            {
-                self.weatherPic = UIImage(data: data)
-            }
-        }
-    }
     
     private func httpGet(request: NSURLRequest!, callback: (String, String?) -> Void) {
         let session = NSURLSession.sharedSession()
