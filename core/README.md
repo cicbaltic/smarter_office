@@ -96,4 +96,28 @@ GET /api/temperaturesAndHumWithRangeAndZoneId/:startsWith/:endsWith/:zoneId/:ste
    ]
 }
 ```
-
+GET /api/latestTemperaturesAndHumByZoneIds
+* Response 200 (text/json)
+* Sample call
+  api/latestTemperaturesAndHumByZoneIds
+* Sample respond object:
+```javascript
+{
+    "size": 2,
+    "rows": [{
+        "timestamp": 1459403381003,
+        "date": "2016-03-31T05:49:41.003Z",
+        "zone_id": "1",
+        "temp_v": "21.60",
+        "hum_v": "35.20",
+        "id": "e5c0d29eddb70c7aabd17709915b05f5"
+    }, {
+        "timestamp": 1459294774074,
+        "date": "2016-03-29T23:39:34.074Z",
+        "zone_id": "2",
+        "temp_v": "21.30",
+        "hum_v": "23.30",
+        "id": "010ff1ce9fcf095a131816564bd9acc8"
+    }]
+}
+```
