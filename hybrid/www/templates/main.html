@@ -6,7 +6,12 @@
   </ion-refresher> 
 		<div ng-if="noData === false">
 			<div ng-repeat="myData in data">
-				<temp-hum index="$index" alldata="myData"></temp-hum>
+				<div ng-if="datasize === 1">
+					<temp-hum-single-data index="$index" alldata="myData"></temp-hum-single-data>
+				</div>
+				<div ng-if="datasize > 1">
+					<temp-hum-multiple-data index="$index" alldata="myData"></temp-hum-multiple-data>
+				</div>
 			</div>
 		</div>
 		<div ng-if="noData === true" class="errorBlock">
