@@ -38,8 +38,8 @@ myApp.constant('Constants', {
 });
 
 myApp.constant('ApiEndpoint', {
-	  url: 'http://localhost:8100/api'
-	}); 
+	url: 'http://localhost:8100/api'
+}); 
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('history', {

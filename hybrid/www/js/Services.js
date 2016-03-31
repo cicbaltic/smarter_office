@@ -5,10 +5,10 @@ services.factory('TemperatureAndHumidityService', [
 		function($http, ApiEndpoint) {
 			return {
 				getTemperature : function() {
-									return $http
-											.get(
-													ApiEndpoint.url
-															+ '/temperaturesAndHumWithRange/2016-03-30/2016-03-30T23:59/1').then(
+					return $http
+					.get(
+							ApiEndpoint.url
+									+ '/temperaturesAndHumWithRange/2016-03-30/2016-03-30T23:59/1').then(
 							function successCallback(response) {
 								var messageSize = response.data.size;		
 								var data = [];

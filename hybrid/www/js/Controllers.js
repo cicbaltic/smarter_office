@@ -102,10 +102,8 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','$root
 			draw();
 		});
     });	
-	
 	$scope.zone = $scope.all.zone;
 
-	
 	var uniqueId = Date.now();
 	$scope.temperatureId = "T" + uniqueId;
 	$scope.humidityId = "H" + uniqueId;
@@ -205,12 +203,14 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','$root
 app.controller('indexController', ['$scope','TemperatureAndHumidityService', function($scope, TemperatureAndHumidityService) {
 		var myDataPromise = TemperatureAndHumidityService.getTemperature();
 		myDataPromise.then(function(result) {
+			console.log();
 			$scope.noData = false;
 			if (result.length === 0) {
 				$scope.noData = true;
 			}
 			else{
 				$scope.data = result;
+				$scope.datasize = result.length;
 			}
 		});
 		$scope.doRefresh = function() {
@@ -221,6 +221,7 @@ app.controller('indexController', ['$scope','TemperatureAndHumidityService', fun
 				}
 				else{
 					$scope.data = result;
+					$scope.datasize = result.length;
 				}
 			});
 			$scope.$broadcast("scroll.refreshComplete");
