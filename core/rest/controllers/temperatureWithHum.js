@@ -116,7 +116,7 @@ exports.latestTemperaturesAndHumByZoneIds = function (req, res) {
 		stepInSec = req.params.step * 1000;
 	}
 
-	temperatureWithHumDB.viewWithList(model, 'latest_doc_by_zone', 'latest_doc_by_zone', {limit: 5, group: true}, function(err, body) {
+	temperatureWithHumDB.viewWithList(model, 'latest_doc_by_zone', 'latest_doc_by_zone', {limit: limit, group: true}, function(err, body) {
 		if (!err) {
 			var temperatureWithHumList = [];
 			body.rows.forEach(function (doc) {
