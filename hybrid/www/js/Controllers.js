@@ -74,16 +74,13 @@ app.controller('historyController',
 
 						for (i = 0, size = response.data.size; i < size; i++) {
 							var row = $filter('date')(response.data.rows[i].date, humFilterString);
-							console.log(new Date(response.data.rows[i].timestamp));
 
 							if (fromDate < response.data.rows[i].timestamp && toDate > response.data.rows[i].timestamp) {
 								var labelIndex = humLabels.indexOf(row);
 
 								if (humLabels[humLabels.length - 1] === row) {
-									console.log('1');
 									humidityData[0][labelIndex] = (parseInt(humidityData[0][labelIndex]) + parseInt(response.data.rows[i].hum_v))/2;
 								} else {
-									console.log('2');
 									humidityData[0].push(parseInt(response.data.rows[i].hum_v));
 									humLabels.push($filter('date')(response.data.rows[i].date, humFilterString));
 								}
