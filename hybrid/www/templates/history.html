@@ -14,7 +14,7 @@
 		<div class="list">
 			<div class="item range range-positive">
 				<i class="icon ion-android-time"></i> <input type="range"
-					name="volume" min="0" max="2" value="0"> <i
+					name="volume" min="0" max="1" ng-model="data.tempScaleButton" value=><i
 					class="icon ion-android-time"></i>
 			</div>
 		</div>
@@ -24,23 +24,23 @@
 		<label class="item item-input"> <span class="input-label">From
 				Date:</span>
 			<div class="dateCss">
-				<input type="date">
+				<input type="date" ng-model="data.fromTempDate">
 			</div>
 		</label> <label class="item item-input"> <span class="input-label">Hour:</span>
 			<div class="timeCss">
-				<input type="time">
+				<input type="time" ng-model="data.fromTempTime">
 			</div>
 		</label> <label class="item item-input"> <span class="input-label">To
 				Date:</span>
 			<div class="dateCss">
-				<input type="date">
+				<input type="date" ng-model="data.toTempDate">
 			</div>
 		</label> <label class="item item-input"> <span class="input-label">Hour:</span>
 			<div class="timeCss">
-				<input type="time">
+				<input type="time" ng-model="data.toTempTime">
 			</div>
 		</label>
-		<button class="button button-block button-calm">Apply</button>
+		<button class="button button-block button-calm" ng-click="dateFilter('temp')">Apply</button>
 	</div>
 
 	<div class="graphHeader">{{secondGraphTitle}}</div>
@@ -52,13 +52,13 @@
 		<!-- <label class="item item-input" ng-click="openDatePicker()">
                 <span class="input-label">From date</span>
                  <input type="text" ng-model="formattedFromDate" readonly>
-                 
+
               </label> -->
 
 		<div class="list">
 			<div class="item range range-positive">
 				<i class="icon ion-android-time"></i> <input type="range"
-					name="volume" min="0" max="2" value="0"> <i
+					name="volume" min="0" max="1"  ng-model="data.humScaleButton" value=0> <i
 					class="icon ion-android-time"></i>
 			</div>
 		</div>
@@ -68,23 +68,23 @@
 		<label class="item item-input"> <span class="input-label">From
 				Date:</span>
 			<div class="dateCss">
-				<input type="date">
+				<input type="date" ng-model="data.fromHumDate">
 			</div>
 		</label> <label class="item item-input"> <span class="input-label">Hour:</span>
 			<div class="timeCss">
-				<input type="time">
+				<input type="time" ng-model="data.fromHumTime">
 			</div>
 		</label> <label class="item item-input"> <span class="input-label">To
 				Date:</span>
 			<div class="dateCss">
-				<input type="date">
+				<input type="date" ng-model="data.toHumDate">
 			</div>
 		</label> <label class="item item-input"> <span class="input-label">Hour:</span>
 			<div class="timeCss">
-				<input type="time">
+				<input type="time" ng-model="data.toHumTime">
 			</div>
 		</label>
 	</div>
-	<button class="button button-block button-calm">Apply</button>
+	<button class="button button-block button-calm" ng-click="dateFilter('hum')">Apply</button>
 </div>
 </ion-content> </ion-view>
