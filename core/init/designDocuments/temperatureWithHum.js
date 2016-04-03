@@ -63,3 +63,40 @@ documents.views.doc_by_zoneId = {};
 documents.views.doc_by_zoneId['map'] = function(doc){  
 	emit([doc.zone_id], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
 }
+
+documents.views.latest_doc_by_zone = {};
+documents.views.latest_doc_by_zone['map'] = function(doc){ 
+	emit([doc.zone_id], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
+}
+documents.views.latest_doc_by_zone['reduce'] = function(key, values, rereduce){ 
+	var time = 0;
+	var tmp_data;
+	values.forEach(function(data) {
+    if(data.time > time) {
+		time = data.time;
+		tmp_data = data;
+    }
+	});
+	return tmp_data;
+}
+
+documents.lists['latest_doc_by_zone'] = function (head, req) {
+	var rows = [];
+	var newDate = new Date();
+
+	while (row = getRow()) { 
+
+		row.value['date'] = new Date(row.value.time);
+		var zoneId = row.value.zone_id;
+
+		rows.push({
+			'timestamp': row.value.time,
+			'date': row.value.date,
+			'zone_id': zoneId,
+			'temp_v': row.value.temp_v,
+			'hum_v': row.value.hum_v,
+			'id': row.value._id
+		});
+	} 
+	send(JSON.stringify({'rows' : rows}));
+}

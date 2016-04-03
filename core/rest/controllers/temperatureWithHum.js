@@ -110,4 +110,27 @@ exports.listByZoneId = function (req, res) {
 	}
 }
 
+exports.latestTemperaturesAndHumByZoneIds = function (req, res) {
+	var stepInSec = step;
+	if(req.params.step !== undefined) {
+		stepInSec = req.params.step * 1000;
+	}
+
+	temperatureWithHumDB.viewWithList(model, 'latest_doc_by_zone', 'latest_doc_by_zone', {limit: limit, group: true}, function(err, body) {
+		if (!err) {
+			var temperatureWithHumList = [];
+			body.rows.forEach(function (doc) {
+				temperatureWithHumList.push(doc);
+			});
+			res.send(JSON.stringify({
+				'size': temperatureWithHumList.length,
+				'rows': temperatureWithHumList
+
+			}));
+		} else {
+			console.log(err);
+		}
+	});
+}
+
 exports.listByZoneIdAndRange = exports.listByRange;

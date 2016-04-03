@@ -1,6 +1,6 @@
 var config = require('./../../config');
 var nano = require("nano")(config.dbUrl);
-var zonesDB = nano.use('office_environment');
+var zonesDB = nano.use('temperature');
 
 var model = 'zones';
 

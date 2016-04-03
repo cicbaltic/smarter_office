@@ -8,10 +8,10 @@
 
 import UIKit
 import Charts
-import Starscream
+
 import KDCircularProgress
 
-class FirstViewController: UIViewController, WebSocketDelegate {
+class FirstViewController: UIViewController {
     @IBOutlet weak var temp: UILabel!
     @IBOutlet var lineChartView: LineChartView!
     @IBOutlet weak var outsideHumidity: UILabel!
@@ -22,18 +22,86 @@ class FirstViewController: UIViewController, WebSocketDelegate {
     @IBOutlet weak var tempProgress: KDCircularProgress!
     @IBOutlet weak var humidity: UILabel!
     
-    var socket = WebSocket(url: NSURL(string: "ws://localhost:8001/")!)
-
+    @IBOutlet weak var weatherIcon: UILabel!
+    let idToIcon:[Int: String] = [
+        200 : "\u{EB28}",
+        201 : "\u{EB29}",
+        202 : "\u{EB2A}",
+        210 : "\u{EB32}",
+        211 : "\u{EB33}",
+        212 : "\u{EB34}",
+        221 : "\u{EB3D}",
+        230 : "\u{EB46}",
+        231 : "\u{EB47}",
+        232 : "\u{EB48}",
+        300 : "\u{EB8C}",
+        301 : "\u{EB8D}",
+        302 : "\u{EB8E}",
+        310 : "\u{EB96}",
+        311 : "\u{EB97}",
+        312 : "\u{EB98}",
+        313 : "\u{EB99}",
+        314 : "\u{EB9A}",
+        321 : "\u{EBA1}",
+        500 : "\u{EC54}",
+        501 : "\u{EC55}",
+        502 : "\u{EC56}",
+        503 : "\u{EC57}",
+        504 : "\u{EC58}",
+        511 : "\u{EC5F}",
+        520 : "\u{EC68}",
+        521 : "\u{EC69}",
+        522 : "\u{EC6A}",
+        531 : "\u{EC73}",
+        600 : "\u{ECB8}",
+        601 : "\u{ECB9}",
+        602 : "\u{ECBA}",
+        611 : "\u{ECC3}",
+        612 : "\u{ECC4}",
+        615 : "\u{ECC7}",
+        616 : "\u{ECC8}",
+        620 : "\u{ECCC}",
+        621 : "\u{ECCD}",
+        622 : "\u{ECCE}",
+        701 : "\u{ED1D}",
+        711 : "\u{ED27}",
+        721 : "\u{ED31}",
+        731 : "\u{ED3B}",
+        741 : "\u{ED45}",
+        751 : "\u{ED4F}",
+        761 : "\u{ED59}",
+        762 : "\u{ED5A}",
+        771 : "\u{ED63}",
+        781 : "\u{ED6D}",
+        800 : "\u{ED80}",
+        951 : "\u{ED80}",
+        801 : "\u{F168}",
+        802 : "\u{ED82}",
+        803 : "\u{ED83}",
+        804 : "\u{ED84}",
+        900 : "\u{EDE4}",
+        901 : "\u{EDE5}",
+        902 : "\u{EDE6}",
+        903 : "\u{EDE7}",
+        904 : "\u{EDE8}",
+        905 : "\u{EDE9}",
+        906 : "\u{EDEA}",
+        950 : "\u{EE16}",
+        952 : "\u{EE18}",
+        953 : "\u{EE19}",
+        954 : "\u{EE1A}",
+        955 : "\u{EE1B}",
+        956 : "\u{EE1C}",
+        957 : "\u{EE1D}",
+        958 : "\u{EE1E}",
+        959 : "\u{EE1F}",
+        960 : "\u{EE20}",
+        961 : "\u{EE21}",
+        962 : "\u{EE22}",
+        ]
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        let unitsSold = [18.0, 18.5, 18.0, 19.0, 18.5, 20.0, 19.5, 18.5, 19.0, 18.0, 18.5, 18.0]
-
-        //self.setChart(months, values: unitsSold)
-        self.setChartData(months, unitsSold: unitsSold)
-        socket.delegate = self
-        socket.connect()
         updateOutsideInfo()
         updateHumidity(87)
         updateTemp(22)
@@ -68,15 +136,16 @@ class FirstViewController: UIViewController, WebSocketDelegate {
     
     func updateOutsideInfo() {
         let ow = OpenWeather();
-        ow.updateAndGetData { (temperature, humidity, image, isSuccess) -> Void in
+        ow.updateAndGetData { (temperature, humidity, weatherID, isSuccess) -> Void in
                 dispatch_async(dispatch_get_main_queue(), {
                      if (isSuccess) {
                         self.outsideHumidity.text = "Humidity: \(humidity)%"
                         self.outsideTemp.text = NSString(format: "%.2f°C", temperature) as String
                         self.outsideFeels.text =  NSString(format: "Feels like: %.2f°C", OpenWeather.getFeelsLikeInCelcius(temperature, currentHum: humidity)) as String
-                        if let weatherImage = image {
-                            self.outsideImage.image = weatherImage
+                        if let weatherSymbol = self.idToIcon[weatherID!] {
+                            self.weatherIcon.text = weatherSymbol
                         }
+                        
                      } else {
                         self.outsideTemp.text = "No connection"
                     }
@@ -84,76 +153,6 @@ class FirstViewController: UIViewController, WebSocketDelegate {
         }
     }
     
-    func setChart(dataPoints: [String], values: [Double]) {
-        lineChartView.noDataText = "No data for the chart."
-        
-        var dataEntries: [BarChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
-            dataEntries.append(dataEntry)
-        }
-        
-        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: "Units Sold")
-        let chartData = BarChartData(xVals: dataPoints, dataSet: chartDataSet)
-        lineChartView.data = chartData
-    }
-    
-    func setChartData(months : [String], unitsSold: [Double]) {
-        // 1 - creating an array of data entries
-        var yVals1 : [ChartDataEntry] = [ChartDataEntry]()
-        for var i = 0; i < months.count; i++ {
-            yVals1.append(ChartDataEntry(value: unitsSold[i], xIndex: i))
-        }
-        
-        // 2 - create a data set with our array
-        let set1: LineChartDataSet = LineChartDataSet(yVals: yVals1, label: "First Set")
-        set1.axisDependency = .Left // Line will correlate with left axis values
-        set1.setColor(UIColor.redColor().colorWithAlphaComponent(0.2)) // our line's opacity is 50%
-        set1.setCircleColor(UIColor.redColor()) // our circle will be dark red
-        set1.lineWidth = 2.0
-        set1.circleRadius = 6.0 // the radius of the node circle
-        set1.fillAlpha = 65 / 255.0
-        set1.fillColor = UIColor.redColor()
-        set1.highlightColor = UIColor.whiteColor()
-        set1.drawCircleHoleEnabled = true
-        
-        //3 - create an array to store our LineChartDataSets
-        var dataSets : [LineChartDataSet] = [LineChartDataSet]()
-        dataSets.append(set1)
-        
-        //4 - pass our months in for our x-axis label value along with our dataSets
-        let data: LineChartData = LineChartData(xVals: months, dataSets: dataSets)
-        data.setValueTextColor(UIColor.blackColor())
-        
-        //5 - finally set our data
-        self.lineChartView.backgroundColor = UIColor.whiteColor()
-        self.lineChartView.getAxis(.Left).drawGridLinesEnabled = false
-        self.lineChartView.xAxis.drawGridLinesEnabled = false
-        self.lineChartView.data = data
-        self.lineChartView.xAxis.labelPosition = .Bottom
-    
-    }
-
-    func websocketDidConnect(socket: WebSocket) {
-        print("websocket is connected")
-    }
-    
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("websocket is disconnected: \(error?.localizedDescription)")
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        print("got some text: \(text)")
-        print(self.temp)
-        if(self.temp != nil) {
-            self.temp.text = text + "° C";
-        }
-    }
-    
-    func websocketDidReceiveData(socket: WebSocket, data: NSData) {
-        print("got some data: \(data.length)")
-    }
     
 }
 

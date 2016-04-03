@@ -25,7 +25,6 @@ app.controller('historyController',
 
 		coreService.tempAndHumWithRangeAndZoneId(null, function(response){
 			var temperatureData = [[]];
-			var labels = [];
 			var humidityData = [[]];
 			var tempFilterString;
 			var humFilterString;
@@ -75,13 +74,16 @@ app.controller('historyController',
 
 						for (i = 0, size = response.data.size; i < size; i++) {
 							var row = $filter('date')(response.data.rows[i].date, humFilterString);
+							console.log(new Date(response.data.rows[i].timestamp));
 
 							if (fromDate < response.data.rows[i].timestamp && toDate > response.data.rows[i].timestamp) {
 								var labelIndex = humLabels.indexOf(row);
 
-								if (labels[labels.length - 1] === row) {
+								if (humLabels[humLabels.length - 1] === row) {
+									console.log('1');
 									humidityData[0][labelIndex] = (parseInt(humidityData[0][labelIndex]) + parseInt(response.data.rows[i].hum_v))/2;
 								} else {
+									console.log('2');
 									humidityData[0].push(parseInt(response.data.rows[i].hum_v));
 									humLabels.push($filter('date')(response.data.rows[i].date, humFilterString));
 								}
@@ -121,6 +123,43 @@ app.controller('historyController',
 				$ionicHistory.goBack();
 			};
 
+			var p1 = document.getElementById("rangeValue1");
+			var res1 = document.getElementById("rangeValueText1");
+			p1.addEventListener("input", function() {
+
+				if(p1.value == 0){
+					res1.innerHTML = "Days";
+					$scope.$apply();
+				}
+				if(p1.value == 1){
+					res1.innerHTML = "Hours";
+					$scope.$apply();
+
+				}
+				if(p1.value == 2){
+					res1.innerHTML = "Minutes";
+					$scope.$apply();
+				}
+			}, false);
+
+			var p2 = document.getElementById("rangeValue2");
+			var res2 = document.getElementById("rangeValueText2");
+			p2.addEventListener("input", function() {
+				if(p2.value == 0){
+					res2.innerHTML = "Days";
+					$scope.$apply();
+				}
+				if(p2.value == 1){
+					res2.innerHTML = "Hours";
+					$scope.$apply();
+
+				}
+				if(p2.value == 2){
+					res2.innerHTML = "Minutes";
+					$scope.$apply();
+				}
+			}, false);
+
 		});
 
 app.controller('tempHumidityController', ['$scope','$timeout','Constants','$rootScope', '$timeout', 'colorService',
@@ -130,10 +169,9 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','$root
 		$timeout(function(){
 			draw();
 		});
-    });
+  });
 
 	$scope.zone = $scope.all.zone;
-
 
 	var uniqueId = Date.now();
 	$scope.temperatureId = "T" + uniqueId;
@@ -234,13 +272,28 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','$root
 app.controller('indexController', ['$scope','TemperatureAndHumidityService', function($scope, TemperatureAndHumidityService) {
 		var myDataPromise = TemperatureAndHumidityService.getTemperature();
 		myDataPromise.then(function(result) {
+			console.log();
 			$scope.noData = false;
 			if (result.length === 0) {
 				$scope.noData = true;
 			}
 			else{
 				$scope.data = result;
+				$scope.datasize = result.length;
 			}
 		});
 
+		$scope.doRefresh = function() {
+			myDataPromise.then(function(result) {
+				$scope.noData = false;
+				if (result.length === 0) {
+					$scope.noData = true;
+				}
+				else{
+					$scope.data = result;
+					$scope.datasize = result.length;
+				}
+			});
+			$scope.$broadcast("scroll.refreshComplete");
+		}
 }]);
