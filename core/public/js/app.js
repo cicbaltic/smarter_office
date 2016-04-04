@@ -29,6 +29,6 @@ app.controller('tempAndHumCtrl', function ($scope, $http, $interval) {
         });
     };
     $scope.updateData();
-    $interval($scope.updateData, 10000);
+    $interval($scope.updateData, 60000);
 
 });
