@@ -2,10 +2,10 @@ applications:
 - path: .
   memory: 256M
   instances: 1
-  domain: eu-gb.mybluemix.net
+  domain: stage1.mybluemix.net
   name: cicb-smarter-office
   host: cicb-smarter-office
   disk_quota: 1024M
   services:
-  - Internet of Things Foundation-5t
-  - Cloudant NoSQL DB-5x
+  - Internet of Things Platform-60
+  - cicb-smartoffice-node-red-cloudantNoSQLDB
