@@ -18,9 +18,9 @@ var router = express.Router();
 
 // ROUTES FOR REST API
 router.get('/', function (req, res) {
-	res.json({
-		message: 'hooray!welcome to our api!'
-	});
+    res.json({
+        message: 'hooray!welcome to our api!'
+    });
 });
 
 // register api routes
@@ -32,15 +32,22 @@ app.use(express.static(__dirname + '/public'));
 // register api routes
 app.use('/api', router);
 
+// adding CORS
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 var temperatureOnlyController = require('./rest/controllers/temperatureOnly');
 app.get('/api/temperatures/step/:step?', temperatureOnlyController.listAllWithStep);
 app.get('/api/temperatures/zone/:zoneId', temperatureOnlyController.listByZoneId);
-app.get('/api/temperatures/from/:startsWith/to/:endsWith/step/:step?',temperatureOnlyController.listByRange);
+app.get('/api/temperatures/from/:startsWith/to/:endsWith/step/:step?', temperatureOnlyController.listByRange);
 app.get('/api/temperatures/from/:startsWith/to/:endsWith/zone/:zoneId/step/:step?', temperatureOnlyController.listByZoneIdAndRange);
 
 var temperatureWithHumController = require('./rest/controllers/temperatureWithHum');
 app.get('/api/temperaturesAndHum/:step?', temperatureWithHumController.listAllWithStep);
-app.get('/api/temperaturesAndHumWithRange/:startsWith/:endsWith/:step?',temperatureWithHumController.listByRange);
+app.get('/api/temperaturesAndHumWithRange/:startsWith/:endsWith/:step?', temperatureWithHumController.listByRange);
 app.get('/api/temperaturesAndHumWithZoneId/:zoneId', temperatureWithHumController.listByZoneId);
 app.get('/api/latestTemperaturesAndHumByZoneIds', temperatureWithHumController.latestTemperaturesAndHumByZoneIds);
 
