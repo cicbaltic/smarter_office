@@ -1,6 +1,6 @@
 var app = angular.module('smarterOfficeApp', ["chart.js"]);
 
-app.controller('tempAndHumCtrl', function ($scope, $http, $timeout) {
+app.controller('tempAndHumCtrl', function ($scope, $http, $interval) {
     'use strict';
     $scope.updateData = function () {
         $http.get("http://cicb-smarter-office.stage1.mybluemix.net/api/latestTemperaturesAndHumByZoneIds").then(function (response) {
@@ -29,5 +29,6 @@ app.controller('tempAndHumCtrl', function ($scope, $http, $timeout) {
         });
     };
     $scope.updateData();
+    $interval($scope.updateData, 10000);
 
 });
