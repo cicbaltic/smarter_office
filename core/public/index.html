@@ -18,49 +18,55 @@
 
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">IBM CIC Baltic Smarter Office</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Zones</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container-fluid" ng-app="smarterOfficeApp" ng-controller="tempAndHumCtrl">
-        <div ng-repeat="x in myData">
-            <div class="row">
-                <div class="col-sm-12 centered">
-                    <h1>Zone {{x.zone_id}}</h1>
-                    <h4>{{x.formatedDate}}</h4>
+
+    <div class="wrapper" ng-app="smarterOfficeApp" ng-controller="tempAndHumCtrl">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">IBM CIC Baltic Smarter Office</a>
                 </div>
-
-
-                <div class="row">
-                    <div class="col-sm-6 centered">
-                        <h4>Temperature</h4>
-                        <canvas id="{{x.zone_id}}-temp" class="chart chart-doughnut" chart-data="x.tempChart.data" chart-labels="x.tempChart.labels" chart-options="x.options">
-                        </canvas>
-                        <h4>{{x.temp_v}} °C</h4>
-
-                    </div>
-                    <div class="col-sm-6 centered">
-                        <h4>Humidity</h4>
-                        <canvas id="{{x.zone_id}}-hum" class="chart chart-doughnut" chart-data="x.humChart.data" chart-labels="x.humChart.labels" chart-options="x.options">
-                        </canvas>
-                        <h4>{{x.hum_v}}%</h4>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Zones</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ng-click="updateData()" href="#"><span class="glyphicon glyphicon-refresh "></span> Refresh</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid ">
+            <div ng-repeat="x in myData ">
+                <div class="row ">
+                    <div class="col-sm-12 centered ">
+                        <h1>Zone {{x.zone_id}}</h1>
+                        <h4>{{x.formatedDate}}</h4>
                     </div>
 
+
+                    <div class="row ">
+                        <div class="col-sm-6 centered ">
+                            <h4>Temperature</h4>
+                            <canvas id="{{x.zone_id}}-temp " class="chart chart-doughnut " chart-data="x.tempChart.data " chart-labels="x.tempChart.labels " chart-options="x.options ">
+                            </canvas>
+                            <h4>{{x.temp_v}} °C</h4>
+
+                        </div>
+                        <div class="col-sm-6 centered ">
+                            <h4>Humidity</h4>
+                            <canvas id="{{x.zone_id}}-hum " class="chart chart-doughnut " chart-data="x.humChart.data " chart-labels="x.humChart.labels " chart-options="x.options ">
+                            </canvas>
+                            <h4>{{x.hum_v}}%</h4>
+                        </div>
+
+
+                    </div>
+
                 </div>
 
-
             </div>
-
         </div>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="js/app.js "></script>
 </body>
 
 </html>
