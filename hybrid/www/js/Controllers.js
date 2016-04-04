@@ -112,29 +112,24 @@ app.controller('historyController',
 				}
 			}
 
-			$scope.dateFilter();
-
-		});
-
-			$scope.goBack = function() {
-				$ionicHistory.goBack();
-			};
-
 			var p1 = document.getElementById("rangeValue1");
 			var res1 = document.getElementById("rangeValueText1");
 			p1.addEventListener("input", function() {
 
 				if(p1.value == 0){
 					res1.innerHTML = "Days";
+					$scope.dateFilter('temp');
 					$scope.$apply();
 				}
 				if(p1.value == 1){
 					res1.innerHTML = "Hours";
+					$scope.dateFilter('temp');
 					$scope.$apply();
 
 				}
 				if(p1.value == 2){
 					res1.innerHTML = "Minutes";
+					$scope.dateFilter('temp');
 					$scope.$apply();
 				}
 			}, false);
@@ -144,18 +139,31 @@ app.controller('historyController',
 			p2.addEventListener("input", function() {
 				if(p2.value == 0){
 					res2.innerHTML = "Days";
+					$scope.dateFilter('hum');
 					$scope.$apply();
 				}
 				if(p2.value == 1){
 					res2.innerHTML = "Hours";
+					$scope.dateFilter('hum');
 					$scope.$apply();
 
 				}
 				if(p2.value == 2){
 					res2.innerHTML = "Minutes";
+					$scope.dateFilter('hum');
 					$scope.$apply();
 				}
 			}, false);
+
+			$scope.dateFilter();
+
+		});
+
+			$scope.goBack = function() {
+				$ionicHistory.goBack();
+			};
+
+
 
 		});
 
