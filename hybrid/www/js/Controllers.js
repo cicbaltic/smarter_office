@@ -12,14 +12,16 @@ app.controller('historyController',
 		var currentTempDate = new Date();
 		var currentHumDate = new Date();
 		var zeroHourDate = new Date(0);
-
+		zeroHourDate.setHours(0);
+		zeroHourDate.setMinutes(0);
+		
 		$scope.data.fromTempTime = zeroHourDate;
-		$scope.data.toTempTime = zeroHourDate;
+		$scope.data.toTempTime = new Date();
 		$scope.data.fromTempDate = new Date(currentTempDate.setDate(currentTempDate.getDate()-7));
 		$scope.data.toTempDate = new Date();
 
 		$scope.data.fromHumTime = zeroHourDate;
-		$scope.data.toHumTime = zeroHourDate;
+		$scope.data.toHumTime =  new Date();
 		$scope.data.fromHumDate = new Date(currentHumDate.setDate(currentHumDate.getDate()-7));
 		$scope.data.toHumDate = new Date();
 
@@ -47,12 +49,12 @@ app.controller('historyController',
 						var fromDate = $scope.data.fromTempDate.setHours($scope.data.fromTempTime.getHours(), $scope.data.fromTempTime.getMinutes(), 0);
 						var toDate = $scope.data.toTempDate.setHours($scope.data.toTempTime.getHours(), $scope.data.toTempTime.getMinutes(), 0);
 
+
 						for (i = 0, size = response.data.size; i < size; i++) {
 							var row = $filter('date')(response.data.rows[i].date, tempFilterString);
 
 							if (fromDate < response.data.rows[i].timestamp && toDate > response.data.rows[i].timestamp) {
 								var labelIndex = tempLabels.indexOf(row);
-
 								if (tempLabels[tempLabels.length - 1] === row) {
 									temperatureData[0][labelIndex] = (parseInt(temperatureData[0][labelIndex]) + parseInt(response.data.rows[i].temp_v))/2;
 								} else {
@@ -277,7 +279,6 @@ app.controller('tempHumidityController', ['$scope','$timeout','Constants','$root
 app.controller('indexController', ['$scope','TemperatureAndHumidityService', function($scope, TemperatureAndHumidityService) {
 		var myDataPromise = TemperatureAndHumidityService.getTemperature();
 		myDataPromise.then(function(result) {
-			console.log();
 			$scope.noData = false;
 			if (result.length === 0) {
 				$scope.noData = true;
