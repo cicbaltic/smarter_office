@@ -1,7 +1,8 @@
 angular.module('smarterOfficeApp', ['chart.js',
     'ui.router',
     'smarterOfficeApp.zones',
-    'smarterOfficeApp.history'
+    'smarterOfficeApp.history',
+    'smarterOfficeApp.header'
     ]).
 config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     'use strict';
