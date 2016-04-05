@@ -90,3 +90,7 @@
     .navbar {
         border-radius: 0;
     }
+    
+    h4.legend {
+        margin-top: -87px;
+    }
