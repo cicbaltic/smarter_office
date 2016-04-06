@@ -157,11 +157,10 @@ class SecondViewController: UIViewController {
         set1.setColor(UIColor.redColor().colorWithAlphaComponent(0.2)) // our line's opacity is 50%
         set1.setCircleColor(UIColor.redColor()) // our circle will be dark red
         set1.lineWidth = 2.0
-        set1.circleRadius = 6.0 // the radius of the node circle
         set1.fillAlpha = 65 / 255.0
         set1.fillColor = UIColor.redColor()
         set1.highlightColor = UIColor.whiteColor()
-        set1.drawCircleHoleEnabled = true
+        set1.drawCirclesEnabled = false
         
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
