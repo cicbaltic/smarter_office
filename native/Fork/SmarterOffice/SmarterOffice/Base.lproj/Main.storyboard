@@ -15,7 +15,7 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Current-->
+        <!--Dashboard-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="SmarterOffice" customModuleProvider="target" sceneMemberID="viewController">
@@ -163,10 +163,10 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ri4-JO-C7i">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="270" height="141"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="270" height="140"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsJ-cR-tym">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="270" height="21"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="270" height="20"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxZ-UH-EzA">
                                                                                     <rect key="frame" x="20" y="0.0" width="250" height="20.5"/>
@@ -185,7 +185,7 @@
                                                                             </constraints>
                                                                         </view>
                                                                         <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lSM-mS-B6u">
-                                                                            <rect key="frame" x="0.0" y="21" width="270" height="120"/>
+                                                                            <rect key="frame" x="0.0" y="20" width="270" height="120"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLr-Jt-FtG">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="120"/>
@@ -216,10 +216,10 @@
                                                                                             <rect key="frame" x="0.0" y="40" width="60" height="80"/>
                                                                                             <subviews>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3UC-gI-xE1" userLabel="tempProgress" customClass="KDCircularProgress" customModule="KDCircularProgress">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                                                                                                     <subviews>
-                                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="-10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iny-Ea-owY">
-                                                                                                            <rect key="frame" x="22" y="22" width="15.5" height="17"/>
+                                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iny-Ea-owY">
+                                                                                                            <rect key="frame" x="16" y="30" width="28" height="20.5"/>
                                                                                                             <fontDescription key="fontDescription" name="WeatherIcons-Regular" family="Weather Icons" pointSize="14"/>
                                                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                                             <nil key="highlightedColor"/>
@@ -265,6 +265,11 @@
                                                                                                             <real key="value" value="1"/>
                                                                                                         </userDefinedRuntimeAttribute>
                                                                                                     </userDefinedRuntimeAttributes>
+                                                                                                    <variation key="default">
+                                                                                                        <mask key="constraints">
+                                                                                                            <exclude reference="LLL-7Q-c5t"/>
+                                                                                                        </mask>
+                                                                                                    </variation>
                                                                                                 </view>
                                                                                             </subviews>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -275,6 +280,11 @@
                                                                                                 <constraint firstAttribute="trailing" secondItem="3UC-gI-xE1" secondAttribute="trailing" id="bNa-j0-efA"/>
                                                                                                 <constraint firstAttribute="bottom" secondItem="3UC-gI-xE1" secondAttribute="bottom" id="dM1-dF-ecS"/>
                                                                                             </constraints>
+                                                                                            <variation key="default">
+                                                                                                <mask key="constraints">
+                                                                                                    <exclude reference="UGa-DH-epi"/>
+                                                                                                </mask>
+                                                                                            </variation>
                                                                                         </view>
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -310,10 +320,10 @@
                                                                                             <rect key="frame" x="0.0" y="40" width="60" height="80"/>
                                                                                             <subviews>
                                                                                                 <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CKt-8F-Axg" userLabel="humidityProgress" customClass="KDCircularProgress" customModule="KDCircularProgress">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                                                                                                     <subviews>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZe-zV-per">
-                                                                                                            <rect key="frame" x="17" y="22" width="26" height="17"/>
+                                                                                                            <rect key="frame" x="17" y="32" width="26" height="17"/>
                                                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                                             <nil key="highlightedColor"/>
@@ -356,6 +366,11 @@
                                                                                                             <real key="value" value="0.10000000000000001"/>
                                                                                                         </userDefinedRuntimeAttribute>
                                                                                                     </userDefinedRuntimeAttributes>
+                                                                                                    <variation key="default">
+                                                                                                        <mask key="constraints">
+                                                                                                            <exclude reference="niu-A5-c8R"/>
+                                                                                                        </mask>
+                                                                                                    </variation>
                                                                                                 </view>
                                                                                             </subviews>
                                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -366,6 +381,11 @@
                                                                                                 <constraint firstItem="CKt-8F-Axg" firstAttribute="leading" secondItem="vas-Gu-Ufa" secondAttribute="leading" id="g62-Gf-30H"/>
                                                                                                 <constraint firstAttribute="height" constant="80" id="qiT-Y9-fPk"/>
                                                                                             </constraints>
+                                                                                            <variation key="default">
+                                                                                                <mask key="constraints">
+                                                                                                    <exclude reference="qiT-Y9-fPk"/>
+                                                                                                </mask>
+                                                                                            </variation>
                                                                                         </view>
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -457,7 +477,7 @@
                             <constraint firstItem="Bc1-vp-11v" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="egL-Hh-g2E"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Current" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="dashboard" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="currentWeatherView" destination="N8f-WX-avd" id="3VP-JP-TLp"/>
                         <outlet property="localWeatherView" destination="Con-y9-9Gt" id="QPW-xV-h4P"/>
@@ -545,7 +565,7 @@
                             <constraint firstItem="oOj-Tk-weJ" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="gcc-La-Pte"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="History" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="History" image="history" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="humidityChart" destination="18A-bQ-k3I" id="qOB-7K-hRm"/>
                         <outlet property="segmentedControl" destination="8lT-z7-3La" id="JV3-EW-isf"/>
@@ -560,7 +580,7 @@
         <scene sceneID="Z3P-XH-Nf2">
             <objects>
                 <navigationController id="0XW-Ti-zcd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="History" id="Iqm-Qj-0bN"/>
+                    <tabBarItem key="tabBarItem" title="History" image="history" id="Iqm-Qj-0bN"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="usU-QB-8p8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -644,7 +664,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="dashboard" width="32" height="32"/>
+        <image name="history" width="32" height="32"/>
     </resources>
 </document>
