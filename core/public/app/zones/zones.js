@@ -1,4 +1,4 @@
-angular.module('smarterOfficeApp.zones', [])
+angular.module('smarterOfficeApp.zones', ['angular-loading-bar'])
     .controller('tempAndHumCtrl', function ($scope, $http, $interval, $rootScope) {
         'use strict';
         if ($rootScope.updateHistoryPromise) {
@@ -27,6 +27,33 @@ angular.module('smarterOfficeApp.zones', [])
                         animateRotate: false,
                         animateScale: true
                     };
+                    if (hum < 40 || hum > 60) {
+                        entry.humChart.colors = ['#e71d32', '#e0e0e0'];
+                        console.log('bad hum');
+                        if (hum < 40) {
+                            entry.humChart.message = 'Too dry!';
+                        } else if (hum > 60) {
+                            entry.humChart.message = 'Too humid!';
+                        }
+                    } else {
+                        entry.humChart.colors = ['#4b8400', '#e0e0e0'];
+                        entry.humChart.message = 'OK';
+                    }
+
+
+
+                    if (temp < 22) {
+                        entry.tempChart.colors = ['#5aaafa', '#e0e0e0'];
+                        entry.tempChart.message = 'Too cold!';
+                    } else if (hum > 24) {
+                        entry.tempChart.colors = ['#e71d32', '#e0e0e0'];
+                        entry.tempChart.message = 'Too hot!';
+
+                    } else {
+                        entry.tempChart.colors = ['#4b8400', '#e0e0e0'];
+                        entry.tempChart.message = 'OK';
+                    }
+
                     entry.formatedDate = moment(entry.date).format("YYYY-MM-DD HH:mm");
                     console.log(entry.formatedDate);
                 });

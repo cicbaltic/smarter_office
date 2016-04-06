@@ -9,18 +9,21 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/angular-chart.css">
+    <link rel="stylesheet" href="css/loading-bar.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="lib/moment.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
     <script src="lib/Chart.js"></script>
     <script src="lib/angular-chart.js"></script>
+    <script src="lib/loading-bar.js"></script>
+
 
 </head>
 
 
 <body ng-app="smarterOfficeApp">
-    <div ng-include="'app/common/header/header.html'"></div>
+    <header ng-include="'app/common/header/header.html'"></header>
     <div ui-view></div>
 
     <script src="app/app.js"></script>

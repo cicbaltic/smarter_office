@@ -5,7 +5,7 @@ angular.module('smarterOfficeApp.history', [])
             $interval.cancel($rootScope.updatePromise);
         }
         $scope.updateHistoryData = function () {
-            $http.get("http://cicb-smarter-office.stage1.mybluemix.net/api/temperaturesAndHum/15").then(function (response) {
+            $http.get("http://cicb-smarter-office.stage1.mybluemix.net/api/temperaturesAndHum/30").then(function (response) {
 
                 $scope.labels = [];
                 $scope.series = ['Temperature', 'Humidity'];
@@ -32,6 +32,9 @@ angular.module('smarterOfficeApp.history', [])
                         sum: [],
                         avgs: []
                     };
+                histData.sort(function (a, b) {
+                    return a.timestamp - b.timestamp;
+                });
                 angular.forEach(histData, function (entry) {
                     var hum = entry.hum_v,
                         temp = entry.temp_v;
@@ -40,6 +43,7 @@ angular.module('smarterOfficeApp.history', [])
                             tempObj.avgs.push((tempObj.sum[i] / tempObj.values[i].length).toFixed(2));
                             humObj.avgs.push((humObj.sum[i] / humObj.values[i].length).toFixed(2));
                         }
+                        console.log(moment(entry.date).format("YYYY-MM-DD"));
                         i++;
                         tempObj.values.push([]);
                         humObj.values.push([]);
