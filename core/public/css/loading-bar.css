@@ -37,7 +37,7 @@
     -moz-transition: width 350ms;
     -o-transition: width 350ms;
     transition: width 350ms;
-    background: #29d;
+    background: #777;
     position: fixed;
     z-index: 10002;
     top: 0;
@@ -71,16 +71,16 @@
     display: block;
     position: fixed;
     z-index: 10002;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 20px;
 }
 
 #loading-bar-spinner .spinner-icon {
-    width: 14px;
-    height: 14px;
+    width: 30px;
+    height: 30px;
     border: solid 2px transparent;
-    border-top-color: #29d;
-    border-left-color: #29d;
+    border-top-color: #777;
+    border-left-color: #777;
     border-radius: 50%;
     -webkit-animation: loading-bar-spinner 400ms linear infinite;
     -moz-animation: loading-bar-spinner 400ms linear infinite;
