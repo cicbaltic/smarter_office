@@ -1,0 +1,8 @@
+Status  Task
+
+NEW     Calculate angle for temperature and humidity on the main screen, as now it's static value
+NEW     Add loading overlay to the charts and the table
+NEW     Change background and colors for history screens
+NEW     Add Icon for application
+NEW     Update datasource for charts, as the one used now fetches all data instead of range, the range one was broken when it was implemented
+NEW     Add reload temperature data to home screen, maybe on the right top side 'reload' image...
