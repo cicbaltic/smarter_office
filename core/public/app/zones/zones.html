@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-5 centered ">
                 <h4>Temperature</h4>
-                <canvas id="{{x.zone_id}}-temp " class="chart chart-doughnut " chart-colours="x.tempChart.colors" chart-data="x.tempChart.data " chart-labels="x.tempChart.labels " chart-options="x.options ">
+                <canvas tabIndex="-1" id="{{x.zone_id}}-temp " class="chart chart-doughnut " chart-colours="x.tempChart.colors" chart-data="x.tempChart.data " chart-labels="x.tempChart.labels " chart-options="x.options ">
                 </canvas>
                 <h4>{{x.temp_v}} °C</h4>
                 <h4>{{x.tempChart.message}}</h4>
@@ -19,7 +19,7 @@
             </div>
             <div class="col-sm-5 centered ">
                 <h4>Humidity</h4>
-                <canvas id="{{x.zone_id}}-hum " class="chart chart-doughnut " chart-colours="x.humChart.colors" chart-data="x.humChart.data " chart-labels="x.humChart.labels " chart-options="x.options ">
+                <canvas tabIndex="-1" id="{{x.zone_id}}-hum " class="chart chart-doughnut " chart-colours="x.humChart.colors" chart-data="x.humChart.data " chart-labels="x.humChart.labels " chart-options="x.options ">
                 </canvas>
                 <h4>{{x.hum_v}}%</h4>
                 <h4>{{x.humChart.message}}</h4>
