@@ -30,7 +30,7 @@ class SecondViewController: UIViewController {
     }
 
     @IBAction func segmentChanged(sender: AnyObject, forEvent event: UIEvent) {
-        
+        self.items.removeAll()
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             loadDayData()
