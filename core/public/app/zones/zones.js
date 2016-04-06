@@ -25,7 +25,8 @@ angular.module('smarterOfficeApp.zones', ['angular-loading-bar'])
                         percentageInnerCutout: 70,
                         responsive: false,
                         animateRotate: false,
-                        animateScale: true
+                        animateScale: true,
+                        segmentShowStroke: false
                     };
                     if (hum < 40 || hum > 60) {
                         entry.humChart.colors = ['#e71d32', '#e0e0e0'];

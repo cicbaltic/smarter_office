@@ -5,11 +5,11 @@
 
 
         <div class="row ">
-            <div class="col-sm-2 centered ">
+            <div class="col-sm-4 centered ">
                 <h1>Zone {{x.zone_id}}</h1>
                 <h4>{{x.formatedDate}}</h4>
             </div>
-            <div class="col-sm-5 centered ">
+            <div class="col-sm-4 centered ">
                 <h4>Temperature</h4>
                 <canvas tabIndex="-1" id="{{x.zone_id}}-temp " class="chart chart-doughnut " chart-colours="x.tempChart.colors" chart-data="x.tempChart.data " chart-labels="x.tempChart.labels " chart-options="x.options ">
                 </canvas>
@@ -17,7 +17,7 @@
                 <h4>{{x.tempChart.message}}</h4>
 
             </div>
-            <div class="col-sm-5 centered ">
+            <div class="col-sm-4 centered ">
                 <h4>Humidity</h4>
                 <canvas tabIndex="-1" id="{{x.zone_id}}-hum " class="chart chart-doughnut " chart-colours="x.humChart.colors" chart-data="x.humChart.data " chart-labels="x.humChart.labels " chart-options="x.options ">
                 </canvas>
