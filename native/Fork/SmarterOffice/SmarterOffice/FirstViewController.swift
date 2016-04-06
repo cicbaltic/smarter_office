@@ -181,10 +181,27 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let rowItem : TempAndHum = self.items[indexPath.row]
         
         cell.locationLabel?.text = String(rowItem.zoneId)
-        cell.temperatureLabel.text = String(format: "%.0f", arguments: [rowItem.temperature])
-        cell.humidityLabel.text = String(format: "%.0f", arguments: [rowItem.humidity])
-        cell.progress.angle = 60
+        cell.temperatureLabel.text = String(format: "%.0f°", arguments: [rowItem.temperature])
+        cell.humidityLabel.text = String(format: "%.0f%%", arguments: [rowItem.humidity])
+        cell.progress.animateToAngle(getTempAngle(rowItem.temperature), duration: 2) { (_) in }
+        cell.humidityProgress.animateToAngle(getHumidityAngle(rowItem.humidity), duration: 2) { (_) in }
         return cell
+    }
+    
+    func getTempAngle(temperature:Double) -> Double {
+        let max = 40.0
+        let min = 0.0
+        if(temperature > max) {
+            return 360
+        } else if(temperature < min) {
+            return 0
+        } else {
+            return 360 * (temperature / max)
+        }
+    }
+    
+    func getHumidityAngle(humidity:Double) -> Double {
+        return 360 * (humidity / 100)
     }
 }
 

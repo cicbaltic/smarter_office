@@ -1,6 +1,6 @@
 Status  Task
 
-NEW     Calculate angle for temperature and humidity on the main screen, as now it's static value
+DONE     Calculate angle for temperature and humidity on the main screen, as now it's static value
 NEW     Add loading overlay to the charts and the table
 NEW     Change background and colors for history screens
 DONE     Add Icon for application
