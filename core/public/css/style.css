@@ -39,14 +39,31 @@ html {
         padding-left: 40px;
         font-size: 18px;
     }
+    .navbar-nav li a:focus {
+        outline: none;
+    }
     .navbar-default .navbar-nav .active a {
         height: 69px;
         background-color: #dddddd;
     }
     .navbar-default .navbar-nav .active a:hover {
         background-color: #dddddd;
+        border-bottom-color: #333;
     }
     .navbar-default .navbar-nav li a:hover {
+        color: #333;
+        background-color: transparent;
+        border-bottom-width: 5px;
+        border-bottom-color: #dddddd;
+        border-bottom-style: solid;
+        box-sizing: border-box;
+        padding-bottom: 19px;
+    }
+    .navbar-default .navbar-nav .active a:focus {
+        background-color: #dddddd;
+        border-bottom-color: #333;
+    }
+    .navbar-default .navbar-nav li a:focus {
         color: #333;
         background-color: transparent;
         border-bottom-width: 5px;
