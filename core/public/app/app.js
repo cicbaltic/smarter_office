@@ -1,6 +1,7 @@
 angular.module('smarterOfficeApp', ['chart.js',
     'ui.router',
     'smarterOfficeApp.zones',
+    'smarterOfficeApp.mobile-app',
     'smarterOfficeApp.history',
     'smarterOfficeApp.header'
     ]).
@@ -14,6 +15,9 @@ config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRo
     }).state('history', {
         url: '/history',
         templateUrl: 'app/history/history.html'
+    }).state('mobile-app', {
+        url: '/mobile-app',
+        templateUrl: 'app/mobile-app/mobile-app.html'
     });
 
 }]);
