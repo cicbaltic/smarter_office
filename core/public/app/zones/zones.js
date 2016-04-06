@@ -45,7 +45,7 @@ angular.module('smarterOfficeApp.zones', ['angular-loading-bar'])
                     if (temp < 22) {
                         entry.tempChart.colors = ['#5aaafa', '#e0e0e0'];
                         entry.tempChart.message = 'Too cold!';
-                    } else if (hum > 24) {
+                    } else if (temp > 24) {
                         entry.tempChart.colors = ['#e71d32', '#e0e0e0'];
                         entry.tempChart.message = 'Too hot!';
 

@@ -1,33 +1,34 @@
 <div class="container-fluid" ng-controller="tempAndHumCtrl">
     <div ng-repeat="x in myData ">
+
+
+
+
         <div class="row ">
-            <div class="col-sm-12 centered ">
+            <div class="col-sm-2 centered ">
                 <h1>Zone {{x.zone_id}}</h1>
                 <h4>{{x.formatedDate}}</h4>
             </div>
-
-
-            <div class="row ">
-                <div class="col-sm-6 centered ">
-                    <h4>Temperature</h4>
-                    <canvas id="{{x.zone_id}}-temp " class="chart chart-doughnut " chart-colours="x.tempChart.colors" chart-data="x.tempChart.data " chart-labels="x.tempChart.labels " chart-options="x.options ">
-                    </canvas>
-                    <h4>{{x.temp_v}} °C</h4>
-                    <h4>{{x.tempChart.message}}</h4>
-
-                </div>
-                <div class="col-sm-6 centered ">
-                    <h4>Humidity</h4>
-                    <canvas id="{{x.zone_id}}-hum " class="chart chart-doughnut " chart-colours="x.humChart.colors" chart-data="x.humChart.data " chart-labels="x.humChart.labels " chart-options="x.options ">
-                    </canvas>
-                    <h4>{{x.hum_v}}%</h4>
-                    <h4>{{x.humChart.message}}</h4>
-                </div>
-
+            <div class="col-sm-5 centered ">
+                <h4>Temperature</h4>
+                <canvas id="{{x.zone_id}}-temp " class="chart chart-doughnut " chart-colours="x.tempChart.colors" chart-data="x.tempChart.data " chart-labels="x.tempChart.labels " chart-options="x.options ">
+                </canvas>
+                <h4>{{x.temp_v}} °C</h4>
+                <h4>{{x.tempChart.message}}</h4>
 
             </div>
+            <div class="col-sm-5 centered ">
+                <h4>Humidity</h4>
+                <canvas id="{{x.zone_id}}-hum " class="chart chart-doughnut " chart-colours="x.humChart.colors" chart-data="x.humChart.data " chart-labels="x.humChart.labels " chart-options="x.options ">
+                </canvas>
+                <h4>{{x.hum_v}}%</h4>
+                <h4>{{x.humChart.message}}</h4>
+            </div>
+
 
         </div>
+        <hr />
+
 
     </div>
 
