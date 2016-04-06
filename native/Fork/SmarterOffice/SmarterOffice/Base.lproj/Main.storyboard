@@ -540,11 +540,29 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rqo-l8-FOb" customClass="LineChartView" customModule="Charts">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="213.5"/>
+                                                <subviews>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bPn-xt-Ex0">
+                                                        <rect key="frame" x="270" y="97" width="20" height="20"/>
+                                                    </activityIndicatorView>
+                                                </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="bPn-xt-Ex0" firstAttribute="centerY" secondItem="Rqo-l8-FOb" secondAttribute="centerY" id="HTr-Go-SBj"/>
+                                                    <constraint firstItem="bPn-xt-Ex0" firstAttribute="centerX" secondItem="Rqo-l8-FOb" secondAttribute="centerX" id="YiJ-eq-LwY"/>
+                                                </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18A-bQ-k3I" customClass="LineChartView" customModule="Charts">
-                                                <rect key="frame" x="0.0" y="213.5" width="560" height="213.5"/>
+                                                <rect key="frame" x="0.0" y="213" width="560" height="213.5"/>
+                                                <subviews>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UFS-5o-frF">
+                                                        <rect key="frame" x="270" y="97" width="20" height="20"/>
+                                                    </activityIndicatorView>
+                                                </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="UFS-5o-frF" firstAttribute="centerY" secondItem="18A-bQ-k3I" secondAttribute="centerY" id="bmO-q0-bMV"/>
+                                                    <constraint firstItem="UFS-5o-frF" firstAttribute="centerX" secondItem="18A-bQ-k3I" secondAttribute="centerX" id="e0Y-fM-5Lo"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -568,7 +586,9 @@
                     <tabBarItem key="tabBarItem" title="History" image="history" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="humidityChart" destination="18A-bQ-k3I" id="qOB-7K-hRm"/>
+                        <outlet property="humiditySpinner" destination="UFS-5o-frF" id="4SX-Xa-HAr"/>
                         <outlet property="segmentedControl" destination="8lT-z7-3La" id="JV3-EW-isf"/>
+                        <outlet property="tempSpinner" destination="bPn-xt-Ex0" id="dKe-XM-GsC"/>
                         <outlet property="temperatureChart" destination="Rqo-l8-FOb" id="UaD-ap-hkT"/>
                     </connections>
                 </viewController>

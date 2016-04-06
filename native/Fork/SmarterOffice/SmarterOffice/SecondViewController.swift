@@ -12,6 +12,8 @@ import SwiftyJSON
 
 class SecondViewController: UIViewController {
 
+    @IBOutlet weak var humiditySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var tempSpinner: UIActivityIndicatorView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var temperatureChart: LineChartView!
     @IBOutlet weak var humidityChart: LineChartView!
@@ -22,15 +24,29 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinnersShouldBeVisible(true)
         loadDayData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func spinnersShouldBeVisible(show:Bool) {
+        if (show) {
+            humiditySpinner.startAnimating()
+            tempSpinner.startAnimating()
+        } else {
+            humiditySpinner.stopAnimating()
+            tempSpinner.stopAnimating()
+        }
+        
+    }
 
     @IBAction func segmentChanged(sender: AnyObject, forEvent event: UIEvent) {
         self.items.removeAll()
+        self.updateChart(nil)
+        self.spinnersShouldBeVisible(true)
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             loadDayData()
@@ -116,6 +132,8 @@ class SecondViewController: UIViewController {
         var labels : [String] = []
         var tempValues : [Double] = []
         var humValues : [Double] = []
+        
+        self.spinnersShouldBeVisible(false)
         
         for tempAndHum in self.items {
             
