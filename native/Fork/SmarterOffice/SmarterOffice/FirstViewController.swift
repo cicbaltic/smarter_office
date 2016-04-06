@@ -130,7 +130,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.outsideImage.text = iconText
                     
                     self.outsideTemp.text = String(format: "%.0f \u{f03c}", arguments: [temperature])
-                    self.outsideHumidity.text = String(format: "Humidity: %.0f", humidity)
+                    self.outsideHumidity.text = String(format: "Humidity: %.0f%%", humidity)
                     self.outsidePressure.text = String(format: "Pressure: %.0fmb", pressure)
                     self.outsideFeelsLike.text =  String(format: "Feels like: %.1f°C", OpenWeather.getFeelsLikeInCelcius(temperature, currentHum: humidity)) as String
                 } else {
