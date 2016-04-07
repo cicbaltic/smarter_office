@@ -12,6 +12,8 @@ import SwiftyJSON
 class ZoneTableViewController: UITableViewController {
     var items = [Zone]()
     
+    let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = UIRectEdge.None
@@ -23,18 +25,15 @@ class ZoneTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-
+        showActivityView()
         RestApiManager.sharedInstance.getZones{ (json : JSON) in
             if let results = json["rows"].array {
                 for entry in results {
                     self.items.append(Zone(json: entry))
                 }
                 dispatch_async(dispatch_get_main_queue(),{
-                        self.tableView.reloadData()
-                    for zone in self.items {
-                        print("%d - %s", zone.zoneId, zone.zoneName)
-                    }
-                    
+                    self.tableView.reloadData()
+                    self.activityView.removeFromSuperview()
                 })
             }
         }
@@ -46,6 +45,12 @@ class ZoneTableViewController: UITableViewController {
         //        self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+    }
+    
+    func showActivityView() {
+        self.activityView.center = self.view.center
+        self.activityView.startAnimating()
+        self.view.addSubview(activityView)
     }
 
     override func didReceiveMemoryWarning() {

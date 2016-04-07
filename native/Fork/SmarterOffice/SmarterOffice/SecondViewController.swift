@@ -26,6 +26,8 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
         UIHelper.setGradienLayerToTheView(view)
         spinnersShouldBeVisible(true)
+        humidityChart.noDataText = ""
+        temperatureChart.noDataText = ""
         loadDayData()
     }
     
@@ -158,6 +160,8 @@ class SecondViewController: UIViewController {
     func setChartData(chart: LineChartView, labels : [String], values: [Double], description : String) {
         if(labels.count == 0 || values.count == 0) {
             chart.data = nil
+            humidityChart.noDataText = "No chart data available"
+            temperatureChart.noDataText = "No chart data available"
             return
         }
         
