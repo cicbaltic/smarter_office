@@ -14,7 +14,10 @@ class ZoneTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.edgesForExtendedLayout = UIRectEdge.None
+        UIHelper.setGradienLayerToTheView(view)
+        setNavigationBarTransparency()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -27,7 +30,7 @@ class ZoneTableViewController: UITableViewController {
                     self.items.append(Zone(json: entry))
                 }
                 dispatch_async(dispatch_get_main_queue(),{
-                        self.tableView.reloadData()                    
+                        self.tableView.reloadData()
                     for zone in self.items {
                         print("%d - %s", zone.zoneId, zone.zoneName)
                     }
@@ -35,6 +38,14 @@ class ZoneTableViewController: UITableViewController {
                 })
             }
         }
+    }
+    
+    func setNavigationBarTransparency() {
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        //        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
     }
 
     override func didReceiveMemoryWarning() {

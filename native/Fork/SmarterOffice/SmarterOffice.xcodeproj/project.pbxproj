@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		292DA0A01CAA957C00DA149B /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292DA09F1CAA957C00DA149B /* ProgressTableViewCell.swift */; };
+		292FC3AD1CB696D200942065 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292FC3AC1CB696D200942065 /* CustomNavigationController.swift */; };
 		296C8C911CB4DBC1000BC370 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 296C8C901CB4DBC1000BC370 /* TODO */; };
+		2982E9EE1CB6A4AC0077A5A1 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2982E9ED1CB6A4AC0077A5A1 /* UIHelper.swift */; };
 		29AD5F1E1CAA4F4300C1500A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AD5F1D1CAA4F4300C1500A /* AppDelegate.swift */; };
 		29AD5F201CAA4F4300C1500A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AD5F1F1CAA4F4300C1500A /* FirstViewController.swift */; };
 		29AD5F221CAA4F4300C1500A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AD5F211CAA4F4300C1500A /* SecondViewController.swift */; };
@@ -31,7 +33,9 @@
 /* Begin PBXFileReference section */
 		0D2D7FFFA497311ABB5A410D /* Pods-SmarterOffice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmarterOffice.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmarterOffice/Pods-SmarterOffice.release.xcconfig"; sourceTree = "<group>"; };
 		292DA09F1CAA957C00DA149B /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
+		292FC3AC1CB696D200942065 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		296C8C901CB4DBC1000BC370 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		2982E9ED1CB6A4AC0077A5A1 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		29AD5F1A1CAA4F4300C1500A /* SmarterOffice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmarterOffice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29AD5F1D1CAA4F4300C1500A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29AD5F1F1CAA4F4300C1500A /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2982E9EC1CB6A48E0077A5A1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2982E9ED1CB6A4AC0077A5A1 /* UIHelper.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		29AD5F111CAA4F4300C1500A = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +99,7 @@
 		29AD5F1C1CAA4F4300C1500A /* SmarterOffice */ = {
 			isa = PBXGroup;
 			children = (
+				2982E9EC1CB6A48E0077A5A1 /* UI */,
 				29F1A7C01CB2DF3C00715814 /* Common */,
 				29F1A7AF1CB1679200715814 /* Rest */,
 				29F1D8341CAA6FCE00674E56 /* Weather */,
@@ -103,6 +116,7 @@
 				29F1A7BA1CB18A8E00715814 /* ZoneTableViewCell.swift */,
 				29F1A7BC1CB18ADA00715814 /* ZoneTableViewController.swift */,
 				296C8C901CB4DBC1000BC370 /* TODO */,
+				292FC3AC1CB696D200942065 /* CustomNavigationController.swift */,
 			);
 			path = SmarterOffice;
 			sourceTree = "<group>";
@@ -278,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29AD5F221CAA4F4300C1500A /* SecondViewController.swift in Sources */,
+				2982E9EE1CB6A4AC0077A5A1 /* UIHelper.swift in Sources */,
 				29F1A7C21CB2DF4C00715814 /* DateExtension.swift in Sources */,
 				292DA0A01CAA957C00DA149B /* ProgressTableViewCell.swift in Sources */,
 				29F1D8361CAA6FE500674E56 /* WeatherIcon.swift in Sources */,
@@ -289,6 +304,7 @@
 				29F1A7BD1CB18ADA00715814 /* ZoneTableViewController.swift in Sources */,
 				29F1A7B31CB16B5100715814 /* Zone.swift in Sources */,
 				29F1A7BB1CB18A8E00715814 /* ZoneTableViewCell.swift in Sources */,
+				292FC3AD1CB696D200942065 /* CustomNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
