@@ -21,7 +21,6 @@ class TempAndHum {
         temperature = Double(json["temp_v"].stringValue)
         humidity = Double(json["hum_v"].stringValue)
         zoneId = Int(json["zone_id"].stringValue)
-        print(json["date"].stringValue)
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         dateFormatter.timeZone = NSTimeZone(name: "UTC")

@@ -558,8 +558,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oOj-Tk-weJ">
-                                <rect key="frame" x="20" y="64" width="560" height="487"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oOj-Tk-weJ">
+                                <rect key="frame" x="20" y="64" width="560" height="580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dR-Tz-QbH">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
@@ -577,7 +577,8 @@
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="8lT-z7-3La" firstAttribute="centerX" secondItem="6dR-Tz-QbH" secondAttribute="centerX" id="1Yn-ew-TvC"/>
                                             <constraint firstAttribute="trailing" secondItem="8lT-z7-3La" secondAttribute="trailing" constant="10" id="7Ms-xa-uI9"/>
@@ -587,35 +588,36 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Dcb-Tc-tuJ">
-                                        <rect key="frame" x="0.0" y="60" width="560" height="427"/>
+                                        <rect key="frame" x="0.0" y="60" width="560" height="520"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rqo-l8-FOb" customClass="LineChartView" customModule="Charts">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="213.5"/>
+                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rqo-l8-FOb" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="260"/>
                                                 <subviews>
-                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bPn-xt-Ex0">
-                                                        <rect key="frame" x="270" y="97" width="20" height="20"/>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bPn-xt-Ex0">
+                                                        <rect key="frame" x="262" y="88" width="37" height="37"/>
                                                     </activityIndicatorView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="bPn-xt-Ex0" firstAttribute="centerY" secondItem="Rqo-l8-FOb" secondAttribute="centerY" id="HTr-Go-SBj"/>
                                                     <constraint firstItem="bPn-xt-Ex0" firstAttribute="centerX" secondItem="Rqo-l8-FOb" secondAttribute="centerX" id="YiJ-eq-LwY"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18A-bQ-k3I" customClass="LineChartView" customModule="Charts">
-                                                <rect key="frame" x="0.0" y="213" width="560" height="213.5"/>
+                                                <rect key="frame" x="0.0" y="260" width="560" height="260"/>
                                                 <subviews>
-                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UFS-5o-frF">
-                                                        <rect key="frame" x="270" y="97" width="20" height="20"/>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UFS-5o-frF">
+                                                        <rect key="frame" x="262" y="88" width="37" height="37"/>
                                                     </activityIndicatorView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="UFS-5o-frF" firstAttribute="centerY" secondItem="18A-bQ-k3I" secondAttribute="centerY" id="bmO-q0-bMV"/>
                                                     <constraint firstItem="UFS-5o-frF" firstAttribute="centerX" secondItem="18A-bQ-k3I" secondAttribute="centerX" id="e0Y-fM-5Lo"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -626,7 +628,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="oOj-Tk-weJ" secondAttribute="bottom" id="D9D-es-xNV"/>
                             <constraint firstItem="oOj-Tk-weJ" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="Kvk-36-ReV"/>
@@ -650,12 +652,17 @@
         <!--History-->
         <scene sceneID="Z3P-XH-Nf2">
             <objects>
-                <navigationController id="0XW-Ti-zcd" sceneMemberID="viewController">
+                <navigationController id="0XW-Ti-zcd" customClass="CustomNavigationController" customModule="SmarterOffice" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="History" image="history" id="Iqm-Qj-0bN"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="usU-QB-8p8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="rax-2c-qOa" kind="relationship" relationship="rootViewController" id="Hb7-i9-Rp0"/>
@@ -669,48 +676,57 @@
         <scene sceneID="Jjm-YV-QBE">
             <objects>
                 <tableViewController id="rax-2c-qOa" customClass="ZoneTableViewController" customModule="SmarterOffice" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gAZ-KB-AOZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZoneTableViewCell" id="s1x-Uf-sco" customClass="ZoneTableViewCell" customModule="SmarterOffice" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s1x-Uf-sco" id="9sA-na-YHy">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdh-1z-JSG">
-                                            <rect key="frame" x="8" y="8" width="584" height="27.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="bdh-1z-JSG" secondAttribute="trailing" id="BaS-HJ-bBw"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="bdh-1z-JSG" secondAttribute="bottom" id="Pbp-0l-v0G"/>
-                                        <constraint firstItem="bdh-1z-JSG" firstAttribute="leading" secondItem="9sA-na-YHy" secondAttribute="leadingMargin" id="W9x-Ud-R45"/>
-                                        <constraint firstItem="bdh-1z-JSG" firstAttribute="top" secondItem="9sA-na-YHy" secondAttribute="topMargin" id="oTe-kq-aKw"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="label" destination="bdh-1z-JSG" id="22q-dg-JcD"/>
-                                    <segue destination="8rJ-Kc-sve" kind="show" id="cBg-qz-0vu"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="rax-2c-qOa" id="Tda-SH-BTD"/>
-                            <outlet property="delegate" destination="rax-2c-qOa" id="JN0-kt-tYz"/>
-                        </connections>
-                    </tableView>
                     <navigationItem key="navigationItem" title="Select Zone" id="VcJ-mr-eAs">
-                        <barButtonItem key="backBarButtonItem" title="Zones" id="Sbj-aY-mM9"/>
+                        <barButtonItem key="backBarButtonItem" title="Zones" id="Sbj-aY-mM9">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="view" destination="gAZ-KB-AOZ" id="paT-Ud-j5A"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SI5-OP-0yO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gAZ-KB-AOZ">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <prototypes>
+                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZoneTableViewCell" id="s1x-Uf-sco" customClass="ZoneTableViewCell" customModule="SmarterOffice" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s1x-Uf-sco" id="9sA-na-YHy">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdh-1z-JSG">
+                                        <rect key="frame" x="8" y="8" width="584" height="27.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="bdh-1z-JSG" secondAttribute="trailing" id="BaS-HJ-bBw"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="bdh-1z-JSG" secondAttribute="bottom" id="Pbp-0l-v0G"/>
+                                    <constraint firstItem="bdh-1z-JSG" firstAttribute="leading" secondItem="9sA-na-YHy" secondAttribute="leadingMargin" id="W9x-Ud-R45"/>
+                                    <constraint firstItem="bdh-1z-JSG" firstAttribute="top" secondItem="9sA-na-YHy" secondAttribute="topMargin" id="oTe-kq-aKw"/>
+                                </constraints>
+                            </tableViewCellContentView>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="label" destination="bdh-1z-JSG" id="22q-dg-JcD"/>
+                                <segue destination="8rJ-Kc-sve" kind="show" id="cBg-qz-0vu"/>
+                            </connections>
+                        </tableViewCell>
+                    </prototypes>
+                    <connections>
+                        <outlet property="dataSource" destination="rax-2c-qOa" id="Tda-SH-BTD"/>
+                        <outlet property="delegate" destination="rax-2c-qOa" id="JN0-kt-tYz"/>
+                    </connections>
+                </tableView>
             </objects>
             <point key="canvasLocation" x="755" y="823"/>
         </scene>

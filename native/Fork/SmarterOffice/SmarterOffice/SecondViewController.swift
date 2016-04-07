@@ -24,12 +24,13 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIHelper.setGradienLayerToTheView(view)
         spinnersShouldBeVisible(true)
         humidityChart.noDataText = ""
         temperatureChart.noDataText = ""
         loadDayData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -70,9 +71,6 @@ class SecondViewController: UIViewController {
                     self.items.append(TempAndHum(json: entry))
                 }
                 dispatch_async(dispatch_get_main_queue(),{
-                    for tempAndHum in self.items {
-                        print(tempAndHum.temperature, tempAndHum.humidity)
-                    }
                     self.updateChart(nil)
                 })
             }
@@ -86,9 +84,6 @@ class SecondViewController: UIViewController {
                     self.items.append(TempAndHum(json: entry))
                 }
                 dispatch_async(dispatch_get_main_queue(),{
-                    for tempAndHum in self.items {
-                        print(tempAndHum.temperature, tempAndHum.humidity)
-                    }
                     self.updateChart(NSDate().addDays(-7))
                 })
             }
@@ -103,9 +98,6 @@ class SecondViewController: UIViewController {
                     self.items.append(TempAndHum(json: entry))
                 }
                 dispatch_async(dispatch_get_main_queue(),{
-                    for tempAndHum in self.items {
-                        print(tempAndHum.temperature, tempAndHum.humidity)
-                    }
                     self.updateChart(NSDate().addDays(-30))
                 })
             }
@@ -119,9 +111,6 @@ class SecondViewController: UIViewController {
                     self.items.append(TempAndHum(json: entry))
                 }
                 dispatch_async(dispatch_get_main_queue(),{
-                    for tempAndHum in self.items {
-                        print(tempAndHum.temperature, tempAndHum.humidity)
-                    }
                     self.updateChart(NSDate().addDays(-12*30))
                 })
             }
@@ -141,14 +130,18 @@ class SecondViewController: UIViewController {
             
             if(dateGreaterThan != nil) {
                 if(tempAndHum.zoneId == self.zoneId && tempAndHum.date.isGreaterThanDate(dateGreaterThan!, unit: .Day)) {
+
+                    print(tempAndHum.temperature, tempAndHum.humidity)
+                    filteredItems.append(tempAndHum)
+                }
+            } else {
+            
+                if(tempAndHum.zoneId == self.zoneId && tempAndHum.date.equalToDate(NSDate(), unit: .Day)) {
+
+                    print(tempAndHum.temperature, tempAndHum.humidity)
                     filteredItems.append(tempAndHum)
                 }
             }
-            
-            if(tempAndHum.zoneId == self.zoneId && tempAndHum.date.equalToDate(NSDate(), unit: .Day)) {
-                filteredItems.append(tempAndHum)
-            }
-            
         }
         
         let dateFormatter = NSDateFormatter()
@@ -160,11 +153,18 @@ class SecondViewController: UIViewController {
             humValues.append(tempAndHum.humidity)
         }
         
-        setChartData(self.temperatureChart, labels: labels, values: tempValues)
-        setChartData(self.humidityChart, labels: labels, values: humValues)
+        setChartData(self.temperatureChart, labels: labels, values: tempValues, description: "Temperature")
+        setChartData(self.humidityChart, labels: labels, values: humValues, description: "Humidity")
     }
     
-    func setChartData(chart: LineChartView, labels : [String], values: [Double]) {
+    func setChartData(chart: LineChartView, labels : [String], values: [Double], description : String) {
+        if(labels.count == 0 || values.count == 0) {
+            chart.data = nil
+            humidityChart.noDataText = "No chart data available"
+            temperatureChart.noDataText = "No chart data available"
+            return
+        }
+        
         // 1 - creating an array of data entries
         var yVals1 : [ChartDataEntry] = [ChartDataEntry]()
         for i in 0 ..< labels.count {
@@ -172,15 +172,23 @@ class SecondViewController: UIViewController {
         }
         
         // 2 - create a data set with our array
-        let set1: LineChartDataSet = LineChartDataSet(yVals: yVals1, label: "First Set")
+        let set1: LineChartDataSet = LineChartDataSet(yVals: yVals1, label: "Data Set")
         set1.axisDependency = .Left // Line will correlate with left axis values
-        set1.setColor(UIColor.redColor().colorWithAlphaComponent(0.2)) // our line's opacity is 50%
-        set1.setCircleColor(UIColor.redColor()) // our circle will be dark red
+        set1.setColor(UIColor.whiteColor().colorWithAlphaComponent(1)) // our line's opacity is 50%
+        set1.setCircleColor(UIColor.whiteColor())
         set1.lineWidth = 2.0
-        set1.fillAlpha = 65 / 255.0
-        set1.fillColor = UIColor.redColor()
+        //set1.fillAlpha = 65 / 255.0
+        //set1.fillColor = UIColor.redColor()
         set1.highlightColor = UIColor.whiteColor()
         set1.drawCirclesEnabled = false
+        
+        
+        let gradColors = [UIColor.whiteColor().CGColor, UIColor.clearColor().CGColor]
+        let colorLocations:[CGFloat] = [0, 1]
+        if let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradColors, colorLocations) {
+            set1.drawFilledEnabled = true
+            set1.fill = ChartFill(linearGradient: gradient, angle: 90.0)
+        }
         
         //3 - create an array to store our LineChartDataSets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
@@ -188,17 +196,21 @@ class SecondViewController: UIViewController {
         
         //4 - pass our months in for our x-axis label value along with our dataSets
         let data: LineChartData = LineChartData(xVals: labels, dataSets: dataSets)
-        data.setValueTextColor(UIColor.blackColor())
+        data.setValueTextColor(UIColor.whiteColor())
         
         //5 - finally set our data
-        chart.backgroundColor = UIColor.whiteColor()
+        chart.backgroundColor = UIColor.clearColor()
         chart.getAxis(.Left).drawGridLinesEnabled = false
         chart.rightAxis.drawLabelsEnabled = false
         chart.xAxis.drawGridLinesEnabled = false
         chart.legend.enabled = false
-        chart.descriptionText = ""
+        chart.descriptionText = description
+        chart.descriptionTextColor = UIColor.whiteColor()
         chart.data = data
         chart.xAxis.labelPosition = .Bottom
+        chart.xAxis.labelTextColor = UIColor.whiteColor()
+        chart.getAxis(.Left).labelTextColor = UIColor.whiteColor()
+        
     }
 }
 
