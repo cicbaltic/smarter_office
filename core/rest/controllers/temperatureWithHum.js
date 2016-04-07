@@ -3,7 +3,7 @@ var nano = require("nano")(config.dbUrl);
 var temperatureWithHumDB = nano.use('temperature');
 
 var step = 15*1000;
-var limit = 1000;
+var limit = 100000;
 var model = 'temperatureWithHum';
 
 exports.listAll = function (req, res) {
