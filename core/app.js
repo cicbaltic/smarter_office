@@ -47,7 +47,7 @@ app.get('/api/temperatures/from/:startsWith/to/:endsWith/zone/:zoneId/step/:step
 
 var temperatureWithHumController = require('./rest/controllers/temperatureWithHum');
 app.get('/api/temperaturesAndHum/:step?', temperatureWithHumController.listAllWithStep);
-app.get('/api/temperaturesAndHumWithRange/:startsWith/:endsWith/:step?', temperatureWithHumController.listByRange);
+app.get('/api/temperaturesAndHumWithRangeAndZoneId/:startsWith/:endsWith/:step?', temperatureWithHumController.listByRange);
 app.get('/api/temperaturesAndHumWithZoneId/:zoneId', temperatureWithHumController.listByZoneId);
 app.get('/api/latestTemperaturesAndHumByZoneIds', temperatureWithHumController.latestTemperaturesAndHumByZoneIds);
 
