@@ -25,6 +25,8 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         spinnersShouldBeVisible(true)
+        humidityChart.noDataText = ""
+        temperatureChart.noDataText = ""
         loadDayData()
     }
 
@@ -197,7 +199,6 @@ class SecondViewController: UIViewController {
         chart.descriptionText = ""
         chart.data = data
         chart.xAxis.labelPosition = .Bottom
-        
     }
 }
 
