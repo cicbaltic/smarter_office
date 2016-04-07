@@ -16,6 +16,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var officeNameLabel: UILabel!
+    @IBOutlet weak var lastUpdatedLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,6 +32,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var overlay : UIView?
     var outsideTempLoaded : Bool = false
     var insideTempLoaded : Bool = false
+    var timer = NSTimer()
     
     let tableCellIdentifier = "ProgressTableViewCell"
     
@@ -47,11 +49,33 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Do any additional setup after loading the view, typically from a nib.
         updateOutsideInfo()
+        self.timer.invalidate()
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(FirstViewController.updateData), userInfo: nil, repeats: true)
+        updateLastUpdateLabel() 
+    }
+    
+    func updateData() {
+        self.items.removeAll()
+        loadTempAndHumDataForZones()
+        updateOutsideInfo()
+    }
+    
+    func updateLastUpdateLabel() {
+        let date = NSDate()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        self.lastUpdatedLabel.text = "Updated at " + dateFormatter.stringFromDate(date)
+    }
+    
+    @IBAction func refreshBtn() {
+        overlay = addOverlay(view)
+        self.updateData()
     }
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return .Portrait
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -133,6 +157,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.outsideHumidity.text = String(format: "Humidity: %.0f%%", humidity)
                     self.outsidePressure.text = String(format: "Pressure: %.0fmb", pressure)
                     self.outsideFeelsLike.text =  String(format: "Feels like: %.1f°C", OpenWeather.getFeelsLikeInCelcius(temperature, currentHum: humidity)) as String
+                    self.updateLastUpdateLabel()
                 } else {
 //                    self.outsideTemp.text = "No connection"
                 }
