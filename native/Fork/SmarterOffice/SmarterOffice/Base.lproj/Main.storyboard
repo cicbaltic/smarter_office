@@ -541,7 +541,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rqo-l8-FOb" customClass="LineChartView" customModule="Charts">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="213.5"/>
                                                 <subviews>
-                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bPn-xt-Ex0">
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bPn-xt-Ex0">
                                                         <rect key="frame" x="270" y="97" width="20" height="20"/>
                                                     </activityIndicatorView>
                                                 </subviews>
@@ -554,7 +554,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18A-bQ-k3I" customClass="LineChartView" customModule="Charts">
                                                 <rect key="frame" x="0.0" y="213" width="560" height="213.5"/>
                                                 <subviews>
-                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UFS-5o-frF">
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UFS-5o-frF">
                                                         <rect key="frame" x="270" y="97" width="20" height="20"/>
                                                     </activityIndicatorView>
                                                 </subviews>
