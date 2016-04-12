@@ -5,7 +5,7 @@ angular.module('smarterOfficeApp.history', [])
             $interval.cancel($rootScope.updatePromise);
         }
         $scope.updateHistoryData = function () {
-            $http.get("http://cicb-smarter-office.stage1.mybluemix.net/api/temperaturesAndHum/30").then(function (response) {
+            $http.get("http://cicb-smarter-office.stage1.mybluemix.net/api/temperaturesAndHum/5000").then(function (response) {
 
                 $scope.labels = [];
                 $scope.series = ['Temperature', 'Humidity'];

@@ -4,9 +4,20 @@ angular.module('smarterOfficeApp.zones', ['angular-loading-bar'])
         if ($rootScope.updateHistoryPromise) {
             $interval.cancel($rootScope.updateHistoryPromise);
         }
+        var HKKUrl = "http://www.hkk.gf.vu.lt/json.php?callback=JSON_CALLBACK";
+        window.wup = function (data) {
+            console.log(data);
+            $scope.outsideDataTemp = data.zeno_AT_5s_C;
+            $scope.outsideDataHum = data.zeno_RH_5s;
+        }
+
         $scope.updateData = function () {
             $http.get("http://cicb-smarter-office.stage1.mybluemix.net/api/latestTemperaturesAndHumByZoneIds").then(function (response) {
                 $scope.myData = response.data.rows;
+
+
+                $http.jsonp(HKKUrl);
+
 
                 angular.forEach($scope.myData, function (entry) {
                     var hum = entry.hum_v,
@@ -64,6 +75,6 @@ angular.module('smarterOfficeApp.zones', ['angular-loading-bar'])
         //console.log($rootScope);
         $scope.updateData();
         $rootScope.updateData = $scope.updateData;
-        $rootScope.updatePromise = $interval($scope.updateData, 10000);
+        $rootScope.updatePromise = $interval($scope.updateData, 30000);
 
     });
