@@ -1,56 +1,56 @@
 /* Empty. Add your own CSS if you like */
+
 .donut-inner {
-   margin-top: -70px;
-   margin-bottom: 100px;
-
+    margin-top: -70px;
+    margin-bottom: 100px;
 }
+
 .donut-inner h5 {
-   margin-bottom: 5px;
-   margin-top: 0;
-}
-.bar-stable{
-	background-color:#7CC7FF !important;
-}
-.title{
-	background-color:#7CC7FF !important;
-}
-.test{
-	margin-top:10px;
-}
-.zoneHeader{
-	padding-top:5px;
-	font-size:150%;
-}
-.bar-header{
-	background-color:#7CC7FF !important;
-}
-.history{
-	padding:10px;
-}
-.headerError{
-	font-size:28px;
-	font-weight:bold;
-	padding-bottom:5px;
-	padding-top:10px;
-}
-.errorBlock{
-	padding:10px;
-}
-.messageError{
-	font-size:14px;
-}
-.graphHeader{
-	font-size:14px;
-	font-weight:bold;
-	padding-bottom:5px;
-	padding-top:10px;
+    margin-bottom: 5px;
+    margin-top: 0;
 }
 
-.dateCss{
-	background-color:#ebebe0 !important;
-	width:40%  !important;
+.test {
+    margin-top: 10px;
 }
-.timeCss{
-	background-color: #ebebe0 !important;
-	width:40%  !important;
+
+.zoneHeader {
+    padding-top: 5px;
+    font-size: 150%;
+}
+
+.history {
+    padding: 10px;
+}
+
+.headerError {
+    font-size: 28px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+.errorBlock {
+    padding: 10px;
+}
+
+.messageError {
+    font-size: 14px;
+}
+
+.graphHeader {
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+.dateCss {
+    background-color: #ebebe0 !important;
+    width: 40% !important;
+}
+
+.timeCss {
+    background-color: #ebebe0 !important;
+    width: 40% !important;
 }

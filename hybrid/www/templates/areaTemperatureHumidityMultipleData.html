@@ -1,18 +1,16 @@
 <div id="data">
-	<div class="col-xs-12 col-md-12 zoneHeader">Area: {{all.zone}} <span style="font-size:12px">({{all.timestamp  | date:'yyyy-MM-dd HH:mm'}})</span></div>
-	<div>
-		<div class="col-xs-6 col-md-6">
-			<a href="#/history/{{all.zone}}/T" type="button"
-				class="btn btn-link btn-lg btn-block">
-				<canvas id="{{temperatureId}}"></canvas>
-			</a>
-		</div>
+    <div class="col-xs-12 col-md-12 zoneHeader">Area: {{all.zone}} <span style="font-size:12px">({{all.timestamp  | date:'yyyy-MM-dd HH:mm'}})</span></div>
+    <div>
+        <div class="col-xs-6 col-md-6">
+            <a href="#/app/history/{{all.zone}}/T" type="button" class="btn btn-link btn-lg btn-block">
+                <canvas id="{{temperatureId}}"></canvas>
+            </a>
+        </div>
 
-		<div class="col-xs-6 col-md-6">
-			<a href="#/history/{{all.zone}}/H" type="button"
-				class="btn btn-link btn-lg btn-block">
-				<canvas id="{{humidityId}}"></canvas>
-			</a>
-		</div>
-	</div>
+        <div class="col-xs-6 col-md-6">
+            <a href="#/app/history/{{all.zone}}/H" type="button" class="btn btn-link btn-lg btn-block">
+                <canvas id="{{humidityId}}"></canvas>
+            </a>
+        </div>
+    </div>
 </div>
