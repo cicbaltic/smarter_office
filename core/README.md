@@ -27,7 +27,7 @@ GET api/v1/oxygen
   possible values: 30min, 1h
 * Response 200 (text/json)
 * Sample call
-  api/v1/oxygen
+  api/v1/oxygen__
   api/vi/oxygen?step=30min
   api/vi/oxygen?step=1h
 * Sample respond object:
