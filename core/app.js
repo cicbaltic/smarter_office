@@ -54,6 +54,24 @@ app.get('/api/latestTemperaturesAndHumByZoneIds', temperatureWithHumController.l
 var zoneController = require('./rest/controllers/zoneIds');
 app.get('/api/zones', zoneController.listAll);
 
+
+
+
+//New api version for oxygen
+var oxygenController = exports.oxygenController = require('./rest/controllers/oxygen');
+app.get('/api/oxygen/v1', oxygenController.listAll);
+app.get('/api/oxygen/v1/:zoneIds', oxygenController.listAll);
+app.get('/api/oxygen/v1/:startsWith/:endsWith', oxygenController.listAll);
+app.get('/api/oxygen/v1/:startsWith/:endsWith/:zoneIds', oxygenController.listAll);
+
+
+//New api version for noise
+var noiseController = exports.noiseController = require('./rest/controllers/noise');
+app.get('/api/noise/v1', noiseController.listAll);
+app.get('/api/noise/v1/:zoneIds', noiseController.listAll);
+app.get('/api/noise/v1/:startsWith/:endsWith', noiseController.listAll);
+app.get('/api/noise/v1/:startsWith/:endsWith/:zoneIds', noiseController.listAll);
+
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
