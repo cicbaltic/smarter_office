@@ -59,14 +59,14 @@ GET api/v1/oxygen
 }
 ```
 
-GET api/v1/noise/:zoneIds
+GET api/v1/oxygen/:zoneIds
 * step represent average value in selected interval (by default interval is 30min)
   possible values: 30min, 1h
-* zoneId represent zone (e.g. one zone "123",  multiple zones "123,1,3")
+* zoneIds represent zone (e.g. one zone "123",  multiple zones "123,1,3")
 * Response 200 (text/json)
 * Sample call
-  api/v1/noise/1?step=30min
-  api/v1/noise/2?step=1h
+  api/v1/oxygen/1?step=30min
+  api/v1/oxygen/2?step=1h
 * Sample respond object:
 ```javascript
 {
