@@ -20,6 +20,76 @@ $> sudo node run initCloudant
 
 ## REST URIs
 
+## NOTICE: NEW API CALLS RETURN MOCK DATA
+
+GET api/v1/oxygen
+* step represent average value in selected interval (by default interval is 30min)
+  possible values: 30min, 1h
+* Response 200 (text/json)
+* Sample call
+  api/v1/oxygen
+  api/vi/oxygen?step=30min
+  api/vi/oxygen?step=1h
+* Sample respond object:
+```javascript
+{
+    "size": 3,
+    "zones": [{
+        "zone_id": "1",
+        "zone_name": "Floor 4-1",
+        "data": [{
+            "timestamp": 1459403381003,
+            "date": "2016-03-31T05:49:41.003Z",
+            "oxygen": "75.20",
+        },
+        {
+            "timestamp": 1459403382003,
+            "date": "2016-03-31T05:49:42.003Z",
+            "oxygen": "73.20",
+        }]
+    }, {
+        "zone_id": "2",
+        "zone_name": "Floor 3-1",
+        "data": [{
+            "timestamp": 1459294774074,
+            "date": "2016-03-29T23:39:34.074Z",
+            "oxygen": "63.30",
+        }]
+    }]
+}
+```
+
+GET api/v1/noise/:zoneIds
+* step represent average value in selected interval (by default interval is 30min)
+  possible values: 30min, 1h
+* zoneId represent zone (e.g. one zone "123",  multiple zones "123,1,3")
+* Response 200 (text/json)
+* Sample call
+  api/v1/noise/1?step=30min
+  api/v1/noise/2?step=1h
+* Sample respond object:
+```javascript
+{
+    "size": 2,
+    "zones": [{
+        "zone_id": "1",
+        "zone_name": "Floor 4-1",
+        "data": [{
+            "timestamp": 1459403381003,
+            "date": "2016-03-31T05:49:41.003Z",
+            "oxygen": "75.20",
+        },
+        {
+            "timestamp": 1459403382003,
+            "date": "2016-03-31T05:49:42.003Z",
+            "oxygen": "73.20",
+        }]
+    }]
+}
+```
+
+## OLD API
+
 GET api/temperaturesAndHum/:step?
 * step represent minimum interval between two entries in seconds
 * Response 200 (text/json)
