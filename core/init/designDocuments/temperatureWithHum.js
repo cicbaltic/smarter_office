@@ -4,8 +4,13 @@ var documents = module.exports = {
 }
 
 documents.views.doc_by_time = {};
-documents.views.doc_by_time['map'] = function(doc){ 
-	emit([doc.time], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
+documents.views.doc_by_time['map'] = function(doc) {
+	var zone_name = '';
+	if (doc.hasOwnProperty('zone_name')){
+    	zone_name = doc.zone_name;
+	}
+
+	emit([doc.time], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'zone_name' : zone_name, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
 }
 
 documents.lists['doc_with_range'] = function (head, req) {
@@ -49,6 +54,7 @@ documents.lists['doc_with_range'] = function (head, req) {
 				'timestamp': row.value.time,
 				'date': row.value.date,
 				'zone_id': zoneId,
+				'zone_name': row.value.zone_name,
 				'temp_v': row.value.temp_v,
 				'hum_v': row.value.hum_v,
 				'id': row.value._id
@@ -60,13 +66,23 @@ documents.lists['doc_with_range'] = function (head, req) {
 
 
 documents.views.doc_by_zoneId = {};
-documents.views.doc_by_zoneId['map'] = function(doc){  
-	emit([doc.zone_id], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
+documents.views.doc_by_zoneId['map'] = function(doc) {
+	var zone_name = '';
+	if (doc.hasOwnProperty('zone_name')){
+    	zone_name = doc.zone_name;
+	}
+
+	emit([doc.zone_id], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'zone_name': zone_name, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
 }
 
 documents.views.latest_doc_by_zone = {};
-documents.views.latest_doc_by_zone['map'] = function(doc){ 
-	emit([doc.zone_id], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
+documents.views.latest_doc_by_zone['map'] = function(doc) {
+	var zone_name = '';
+	if (doc.hasOwnProperty('zone_name')){
+    	zone_name = doc.zone_name;
+	}
+
+	emit([doc.zone_id], {'_id': doc._id, 'time': doc.time, 'zone_id': doc.zone_id, 'zone_name': zone_name, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v });
 }
 documents.views.latest_doc_by_zone['reduce'] = function(key, values, rereduce){ 
 	var time = 0;
@@ -93,6 +109,7 @@ documents.lists['latest_doc_by_zone'] = function (head, req) {
 			'timestamp': row.value.time,
 			'date': row.value.date,
 			'zone_id': zoneId,
+			'zone_name': row.value.zone_name,
 			'temp_v': row.value.temp_v,
 			'hum_v': row.value.hum_v,
 			'id': row.value._id
