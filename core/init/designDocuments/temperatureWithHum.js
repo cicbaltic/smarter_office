@@ -72,10 +72,10 @@ documents.views.latest_doc_by_zone['reduce'] = function(key, values, rereduce){
 	var time = 0;
 	var tmp_data;
 	values.forEach(function(data) {
-    if(data.time > time) {
-		time = data.time;
-		tmp_data = data;
-    }
+		if(data.time > time) {
+			time = data.time;
+			tmp_data = data;
+		}
 	});
 	return tmp_data;
 }
@@ -99,4 +99,51 @@ documents.lists['latest_doc_by_zone'] = function (head, req) {
 		});
 	} 
 	send(JSON.stringify({'rows' : rows}));
+}
+
+//
+documents.views.doc_by_zone_and_time_v1 = {};
+documents.views.doc_by_zone_and_time_v1['map'] = function(doc){ 
+//each 30 min
+/*function roundTo30minutes(timestamp) {
+	var date = new Date(timestamp);
+	var minutes = date.getMinutes(); 
+	var d = minutes % 30;
+	date.setMinutes(minutes - d);
+	date.setSeconds(0);
+	date.setMilliseconds(0);
+	return date.getTime()/1000;
+}*/
+//each hour
+function roundToHour(timestamp) {
+	var date = new Date(timestamp);
+	var hours = date.getHours();
+	var d = hours;
+	date.setMinutes(0);
+	date.setSeconds(0);
+	date.setMilliseconds(0);
+	return date.getTime()/1000;
+}
+
+var timestamp = roundToHour(doc.time);
+
+emit([doc.zone_id, timestamp], {'time_index': timestamp, 'time': doc.time, 'zone_id': doc.zone_id, 'temp_v': doc.temp_v, 'hum_v': doc.hum_v});
+}
+documents.views.doc_by_zone_and_time_v1['reduce'] = function(key, values, rereduce){ 
+
+	var temp_v = 0,
+	hum_v = 0,
+	size = values.length,
+	time_index = values[0]['time_index'];
+
+	function roundToTwo(num) {    
+    	return +(Math.round(num + "e+2")  + "e-2");
+	}
+
+	values.forEach(function(data) {
+		temp_v += data.temp_v / size;
+		hum_v += data.hum_v / size;
+	});
+
+	return {'time_index': time_index, 'temp_v': roundToTwo(temp_v), 'hum_v': roundToTwo(hum_v)};
 }

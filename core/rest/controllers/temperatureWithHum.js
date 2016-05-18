@@ -134,3 +134,8 @@ exports.latestTemperaturesAndHumByZoneIds = function (req, res) {
 }
 
 exports.listByZoneIdAndRange = exports.listByRange;
+
+//New api
+exports.listByRange = function (req, res) {
+	
+}
