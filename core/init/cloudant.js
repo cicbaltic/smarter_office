@@ -1,21 +1,31 @@
 var config = require('./../config');
 var nano = require("nano")(config.dbUrl);
 var smartOfficeEnvDB = nano.use('temperature');
- 
-var temperatureWithHumName = 'temperatureWithHum';
-var temperatureWithHumObj= require("./designDocuments/temperatureWithHum.js");
 
+var designDocArray = [
+"temperatureWithHum",
+"zones",
+"temperatureOnly"
+];
 
-var temperatureWithHum = new CloudantDesignDoc(temperatureWithHumName, temperatureWithHumObj);
-temperatureWithHum.createDesignObject();
+var docInput = process.argv[2];
 
-var zones = new CloudantDesignDoc("zones", require("./designDocuments/zones.js"));
-zones.createDesignObject();
+if(docInput) {
+	if(designDocArray.indexOf(docInput) == -1) {
+		console.log('Design document with name: ' + docInput + ' can\'t be created');
+	} else {
+		createDesignDocument(docInput);
+	}
+} else {
+	designDocArray.forEach(function(entry) {
+		createDesignDocument(entry);
+	});
+}
 
-var temperatureOnlyName = 'temperatureOnly';
-var temperatureOnlyObj = require("./designDocuments/temperatureOnly.js");;
-var temperatureOnly = new CloudantDesignDoc(temperatureOnlyName, temperatureOnlyObj)
-temperatureOnly.createDesignObject();
+function createDesignDocument(designDocName) {
+	var doc = new CloudantDesignDoc(designDocName, require("./designDocuments/" + designDocName + ".js"));
+	doc.createDesignObject();
+}
 
 function CloudantDesignDoc(designDocName, obj) {
 	var _design = '_design/';
