@@ -9,20 +9,20 @@ var listOfZones = ["1", "2"];
 
 exports.listAll = function (req, res) {
 	var limit = req.query.limit;
-	execute(listOfZones, undefined, undefined, undefined, res);
+	execute(listOfZones, undefined, undefined, limit, res);
 }
 
 exports.listByZone = function (req, res) {
 	var limit = req.query.limit;
 	var zoneId = req.params.zoneIds;
-	execute(["" + zoneId + ""], undefined, undefined, undefined, res);
+	execute(["" + zoneId + ""], undefined, undefined, limit, res);
 }
 
 exports.listByRange = function (req, res) {
 	var limit = req.query.limit;
 	var startsWith = new Date(req.params.startsWith).getTime()/1000;
 	var endsWith = new Date(req.params.endsWith).getTime()/1000;
-	execute(listOfZones, startsWith, endsWith, undefined, res);
+	execute(listOfZones, startsWith, endsWith, limit, res);
 }
 
 exports.listByRangeAndZoneId = function (req, res) {
