@@ -1,18 +1,19 @@
 {
-	"name": "NodejsStarterApp",
-	"version": "0.0.1",
-	"description": "A sample nodejs app for Bluemix",
-	"scripts": {
-		"start": "node app.js",
-		"initCloudant" : "node init/cloudant.js"
-	},
-	"dependencies": {
-		"express": "4.12.x",
-		"cfenv": "1.0.x",
-		"nano" : "*"
-	},
-	"repository": {},
-	"engines": {
-		"node": "0.12.x"
-	} 
+  "name": "NodejsStarterApp",
+  "version": "0.0.1",
+  "description": "A sample nodejs app for Bluemix",
+  "scripts": {
+    "start": "node app.js",
+    "initCloudant": "node init/cloudant.js"
+  },
+  "dependencies": {
+    "express": "4.12.x",
+    "cfenv": "1.0.x",
+    "nano": "*",
+    "async": "~2.0.0-rc.5"
+  },
+  "repository": {},
+  "engines": {
+    "node": "0.12.x"
+  }
 }
