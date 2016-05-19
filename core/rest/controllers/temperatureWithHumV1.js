@@ -4,31 +4,57 @@ var nano = require("nano")(config.dbUrl);
 var temperatureWithHumDB = nano.use('temperature');
 
 var model = 'temperatureWithHum';
+
 var listOfZones = ["1", "2"];
 
 exports.listAll = function (req, res) {
-/*	var startsWith = new Date('2016-04-01').getTime()/1000;
-	var endsWith = new Date('2016-05-01').getTime()/1000;*/
-	var startsWith = undefined;
-	var endsWith = undefined;
+	var limit = req.query.limit;
+	execute(listOfZones, undefined, undefined, undefined, res);
+}
 
-	var f = function(key, params) {
-		return function(callback){
-			execute(key, params, callback);
-		};
-	}
+exports.listByZone = function (req, res) {
+	var limit = req.query.limit;
+	var zoneId = req.params.zoneIds;
+	execute(["" + zoneId + ""], undefined, undefined, undefined, res);
+}
 
+exports.listByRange = function (req, res) {
+	var limit = req.query.limit;
+	var startsWith = new Date(req.params.startsWith).getTime()/1000;
+	var endsWith = new Date(req.params.endsWith).getTime()/1000;
+	execute(listOfZones, startsWith, endsWith, undefined, res);
+}
+
+exports.listByRangeAndZoneId = function (req, res) {
+	var limit = req.query.limit;
+	var zoneId = req.params.zoneIds;
+	var startsWith = new Date(req.params.startsWith).getTime()/1000;
+	var endsWith = new Date(req.params.endsWith).getTime()/1000;
+	execute(["" + zoneId + ""], startsWith, endsWith, limit, res);
+}
+
+function execute(zones, startsWith, endsWith, limit, res) {
 	var listOfParallelAction = [];
-	listOfZones.forEach(function(entry) {
-		listOfParallelAction.push(f(entry, generateParameters(entry, startsWith, endsWith)));
+	zones.forEach(function(entry) {
+		var parameters = generateParameters(entry, startsWith, endsWith);
+		if(limit != undefined && limit != null) {
+			parameters["limit"] = limit;
+		}
+		listOfParallelAction.push(f(entry, parameters));
 	});
 
 	async.parallel(listOfParallelAction,
 		function(err, results){
 			var size = results.length;
-			res.send(JSON.stringify(generateRespond(listOfZones, results)));
+			res.send(JSON.stringify(generateRespond(zones, results)));
 		}
-	);
+	);	
+}
+
+var f = function(key, params) {
+	return function(callback){
+		executeQuery(key, params, callback);
+	};
 }
 
 function cleanRespond(result) {
@@ -36,7 +62,7 @@ function cleanRespond(result) {
 	result.forEach(function(element, index, array) {
 		cleanedData.push({
 			"timestamp": element.value.time_index,
-			/*"date": new Date(element.value.time_index*1000),*/
+			"date": new Date(element.value.time_index*1000),
             "temp_v": element.value.temp_v,
             "hum_v": element.value.hum_v
 		});
@@ -70,17 +96,17 @@ function generateParameters(zone, startDate, endDate) {
 	}
 }
 
-function execute(key, params, callback) {
+function executeQuery(key, params, callback) {
 	var parameters = {};
+	parameters['limit'] = 336;
+	parameters['reduce'] = true;
+	parameters['group_level'] = 2;	
+	parameters['descending'] = true;
 	if(params != undefined && params != null) {
 		for(var propertyName in params) {
 			parameters[propertyName] = params[propertyName];
 		}
 	} 
-	parameters['limit'] = 336;
-	parameters['reduce'] = true;
-	parameters['group_level'] = 2;	
-	parameters['descending'] = true;
 
 	temperatureWithHumDB.view(model, 'doc_by_zone_and_time_v1', parameters, function(err, body) {
 		if (!err) {

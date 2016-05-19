@@ -75,6 +75,9 @@ app.get('/api/v1/noise//:startsWith/:endsWith/:zoneIds', noiseController.listAll
 //New api version for temperature and Hum
 var temperatureWithHumControllerV1 = require('./rest/controllers/temperatureWithHumV1');
 app.get('/api/v1/temperatureWithHum', temperatureWithHumControllerV1.listAll);
+app.get('/api/v1/temperatureWithHum/:zoneIds', temperatureWithHumControllerV1.listByZone); 
+app.get('/api/v1/temperatureWithHum/:startsWith/:endsWith', temperatureWithHumControllerV1.listByRange);
+app.get('/api/v1/temperatureWithHum/:startsWith/:endsWith/:zoneIds', temperatureWithHumControllerV1.listByRangeAndZoneId);
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
