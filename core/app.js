@@ -39,6 +39,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.set('json spaces', 4);
+
 var temperatureOnlyController = require('./rest/controllers/temperatureOnly');
 app.get('/api/temperatures/step/:step?', temperatureOnlyController.listAllWithStep);
 app.get('/api/temperatures/zone/:zoneId', temperatureOnlyController.listByZoneId);

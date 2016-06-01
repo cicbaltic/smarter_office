@@ -46,7 +46,7 @@ function execute(zones, startsWith, endsWith, limit, res) {
 	async.parallel(listOfParallelAction,
 		function(err, results){
 			var size = results.length;
-			res.send(JSON.stringify(generateRespond(zones, results)));
+			res.json(generateRespond(zones, results));
 		}
 	);	
 }
