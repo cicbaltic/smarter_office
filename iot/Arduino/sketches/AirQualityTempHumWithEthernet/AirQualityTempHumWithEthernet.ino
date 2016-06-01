@@ -54,8 +54,12 @@ void setup() {
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
     // no point in carrying on, so do nothing forevermore:
-    for (;;)
-      ;
+    for (;;){
+      digitalWrite(redLed, LOW);
+      delay(1000);
+      digitalWrite(redLed, HIGH);
+      delay(1000);
+    }
   }
   printIPAddress();
   
