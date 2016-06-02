@@ -1,0 +1,34 @@
+{
+	"id": "82834503-5eb6-6e61-b913-d7e8c35417ae",
+	"name": "New API V1 twitter",
+	"description": "",
+	"order": [
+		"d1cd4584-b33b-4547-cece-c0f5cb2d9728"
+	],
+	"folders": [],
+	"timestamp": 1464856009945,
+	"owner": "654247",
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "d1cd4584-b33b-4547-cece-c0f5cb2d9728",
+			"headers": "",
+			"url": "http://{{url}}/api/v1/twitter/post/tempWithHum/1/Temperature in the office *temp*",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1464857665409,
+			"name": "twitter/post/tempWithHum/1/Temperature in the office *temp*",
+			"description": "",
+			"collectionId": "82834503-5eb6-6e61-b913-d7e8c35417ae",
+			"responses": []
+		}
+	]
+}
