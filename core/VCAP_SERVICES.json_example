@@ -5,5 +5,13 @@
 				"url": "{db_url}"
 			}
 		}
-	]
+	],
+	"twitter": [
+		{
+			"consumer_key": "{onsumer_key}",
+  			"consumer_secret": "{consumer_secret}",
+  			"access_token_key": "{access_token_key}",
+ 			"access_token_secret": "{access_token_secret}"
+		}
+	]		
 }

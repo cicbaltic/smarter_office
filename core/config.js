@@ -12,3 +12,9 @@ if (process.env.VCAP_SERVICES) {
     }
 }
 exports.dbUrl = vcapServices.cloudantNoSQLDB[0].credentials.url;
+exports.twitter = {
+	consumer_key: vcapServices.twitter[0].consumer_key,
+	consumer_secret: vcapServices.twitter[0].consumer_secret,
+	access_token_key: vcapServices.twitter[0].access_token_key,
+	access_token_secret: vcapServices.twitter[0].access_token_secret
+};

@@ -81,6 +81,11 @@ app.get('/api/v1/temperatureWithHum/:zoneIds', temperatureWithHumControllerV1.li
 app.get('/api/v1/temperatureWithHum/:startsWith/:endsWith', temperatureWithHumControllerV1.listByRange);
 app.get('/api/v1/temperatureWithHum/:startsWith/:endsWith/:zoneIds', temperatureWithHumControllerV1.listByRangeAndZoneId);
 
+var twitterControllerV1 = require('./rest/controllers/twitterControllerV1');
+app.get('/api/v1/twitter/post/tempWithHum/:zoneId/:greeting', twitterControllerV1.postTempWithHum);
+
+
+
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
