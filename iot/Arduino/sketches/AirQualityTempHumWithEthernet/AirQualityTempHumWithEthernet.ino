@@ -2,7 +2,7 @@
 #include <Ethernet.h>
 #include <PubSubClient.h>
 #include <dht11.h>
-#include"AirQuality.h"
+//#include"AirQuality.h"
 
 
 #define DHT11PIN 2
@@ -12,20 +12,33 @@
 #define airPin A0
 // Update this to either the MAC address found on the sticker on your Ethernet shield (newer shields)
 // or a different random hexadecimal value (change at least the last four bytes)
-byte mac[] = { 0x69, 0xFF, 0xBB, 0xCC, 0xDE, 0x78 };
-char macstr[] = "69ffbbccde78";
+byte mac[] = { 0x9C, 0xA9, 0x49, 0xBA, 0xB3, 0x08 };
+char macstr[] = "9CA949BAB308";
 // Note this next value is only used if you intend to test against a local MQTT server
 byte localserver[] = {192, 168, 1, 44 };
 
-char servername[]="quickstart.messaging.internetofthings.ibmcloud.com";
+
+//-------- Customise these values -----------
+#define ORG "###"
+#define DEVICE_TYPE "###"
+#define DEVICE_ID "###"
+#define TOKEN "###"
+//-------- Customise the above values --------
+
+char server[] = ORG ".messaging.staging.internetofthings.ibmcloud.com";
+char authMethod[] = "use-token-auth";
+char token[] = TOKEN;
+char clientId[] = "d:" ORG ":" DEVICE_TYPE ":" DEVICE_ID;
+
+char servername[]="quickstart.messaging.staging.internetofthings.ibmcloud.com";
 String clientName = String("d:quickstart:arduino:") + macstr;
-String topicName = String("iot-2/evt/status/fmt/json");
+String topicName = String("iot-2/evt/environment/fmt/json");
 dht11 DHT11;
 
 float tempC = 0.0;
 float humidity = 0.0;
 
-AirQuality airqualitysensor;
+//AirQuality airqualitysensor;
 int current_quality =-1;
 
 
@@ -35,7 +48,9 @@ EthernetClient ethClient;
 void callback(char* topic, byte* payload, unsigned int length);
 // Uncomment this next line and comment out the line after it to test against a local MQTT server
 //PubSubClient client(localserver, 1884, 0, ethClient);
-PubSubClient client(servername, 1883, callback, ethClient);
+//quickstart
+//PubSubClient client(servername, 1883, callback, ethClient);
+PubSubClient client(server, 1883, NULL, ethClient);
 
 void setup() {
   pinMode(greenLed, OUTPUT);
@@ -46,7 +61,7 @@ void setup() {
   
   Serial.begin(9600);
 
-  airqualitysensor.init(airPin);
+  delay(10000);// wait for 10 s to prepare Air quality sensor
   digitalWrite(yellLed, LOW);
   digitalWrite(greenLed, HIGH);
   digitalWrite(redLed, HIGH);
@@ -68,28 +83,36 @@ void setup() {
 void loop() {
   digitalWrite(greenLed, LOW);
   digitalWrite(redLed, LOW);
-   current_quality=airqualitysensor.slope();
-   if(current_quality == -1){
-    current_quality=airqualitysensor.slope();
-   
-  }
+  current_quality=analogRead(airPin);
+ 
   // put your main code here, to run repeatedly:
     char clientStr[34];
   clientName.toCharArray(clientStr,34);
-  char topicStr[26];
-  topicName.toCharArray(topicStr,26);
+  char topicStr[31];
+  topicName.toCharArray(topicStr,31);
   getData();
-  if (!client.connected()) {
+
+  if (!!!client.connected()) {
+    Serial.print("Reconnecting client to ");
+    Serial.println(server);
     digitalWrite(redLed, HIGH);
-    Serial.print("Trying to connect to: ");
-    Serial.println(clientStr);
-    client.connect(clientStr);
-  }
+    //while (!!!client.connect(clientStr)) {
+    while (!!!client.connect(clientId, authMethod, token)) {
+        digitalWrite(redLed, LOW);
+        Serial.print(".");
+        digitalWrite(redLed, HIGH);
+        delay(500);
+    }
+    Serial.println();
+    digitalWrite(redLed, LOW);
+ }
+  
+ 
   digitalWrite(redLed, LOW);
   if (client.connected() ) {
     String json = buildJson();
-    char jsonStr[240];
-    json.toCharArray(jsonStr,240);
+    char jsonStr[100];
+    json.toCharArray(jsonStr,100);
     boolean pubresult = client.publish(topicStr,jsonStr);
     Serial.print("attempt to send ");
     Serial.println(jsonStr);
@@ -166,20 +189,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println();
 }
 
-ISR(TIMER1_OVF_vect){
-  if(airqualitysensor.counter==61)//set 2 seconds as a detected duty
-  {
-      airqualitysensor.last_vol=airqualitysensor.first_vol;
-      airqualitysensor.first_vol=analogRead(airPin);
-      airqualitysensor.counter=0;
-      airqualitysensor.timer_index=1;
-      PORTB=PORTB^0x20;
-  }
-  else
-  {
-      airqualitysensor.counter++;
-  }
-}
+
 void printIPAddress()
 {
   Serial.print("My IP address: ");
